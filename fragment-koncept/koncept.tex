@@ -1,0 +1,110 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[margin=2cm]{geometry}
+\usepackage{lscape}
+\usepackage{underscore}
+\usepackage{amsmath}
+\usepackage{blindtext}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+\usepackage[all]{nowidow}
+
+\usepackage[LY1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{polski}
+\usepackage[lf,enc=t1]{berenis}
+
+\DeclareTextCompositeCommand{\k}{LY1}{a}
+  {\oalign{a\crcr\noalign{\kern-.27ex}\hidewidth\char7}}
+
+
+\lstset{
+    language=C++,
+    frame=tb, % draw a frame at the top and bottom of the code block
+    tabsize=4, % tab space width
+    showstringspaces=false, % don't mark spaces in strings
+    numbers=left, % display line numbers on the left
+    backgroundcolor=\color{black!5}, 
+   % commentstyle=\color{green}, % comment color
+    keywordstyle=\color{blue}, % keyword color
+    stringstyle=\color{red}, % string color  
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+	     {*}{\normalfont{*}}1,
+}
+
+
+\begin{document}
+
+\tableofcontents
+\newpage
+
+\section{Koncept systemu}
+
+\subsection{Sugerowanie przeciwników}
+
+Jednym z podstawowych celów systemu jest wspomaganie procesu poszukiwania rywali do gry. Warto zaznaczyć, że osobą podejmującą decyzję o wyzwaniu drużyny na pojedynek jest kapitan drużyny (w zgodzie z zawodnikami), system nigdy nie podejmuje decyzji samodzielnie - jego funkcją jest zasugerowanie kapitanowi przeciwników oraz "wyjaśnienie" każdej z sugestii.
+
+\subsection{Podstawowe kryterium dopasowywania}
+
+Podstawowym celem dopasowywania przeciwników jest maksymalizacja satysfakcji z gry drużyn oraz maksymalizacja szans na umówienie spotkania.
+
+\subsection{Satysfakcja - herustyki}
+
+Satysfakcja z gry jest pojęciem niemożliwym do zmierzenia. Dlatego w celu umożliwienia oceny potencjalnej satysfakcji z rozgrywki dwóch drużyn zostały zdefiniowane następujące przesłanki, z których może wynikać satysfakcja z gry:
+
+\begin{enumerate}
+\item przybliżony poziom umiejętności drużyn,
+\item przybliżony wiek zawodników,
+\item dobre wspomnienia po poprzednich rozgrywkach,
+\item poziom fair play drużyny przeciwnej\ldots
+\end{enumerate}
+
+
+\subsubsection{Poziom umiejętności drużyn - rezygnacja z tego raczej}
+
+Kluczowym czynnikiem wpływającym na satysfakcję płynącą z rozgrywki jest różnica umiejętności drużyn. Gra ze znacznie lepszymi bądź dużo gorszymi przeciwnikami może prowadzić do znudzenia drużyny lepszej, bądź zniechęcenia drużyny gorszej. Oczywiście w przypadku, gdy obydwie drużyny są bardzo przyjaźnie nastawione, spotkanie takie może prowadzić do dobrych efektów t.j. przekazania wiedzy. <To trzeba lepiej ubrać w słowa, można zaznaczyć że opcjonalny moduł będzie sugerował drużyny wyłacznie na podstawie wyznaczonego poziomu umiejętności>.
+
+
+
+\subsection{Czynniki wpływające na szansę umówienia spotkania}
+
+Przesyłanki dotyczące szansy na umówienie spotkania:
+
+\begin{enumerate}
+\item pokrywajace się zadeklarowane godziny możliwości gry,
+\item aktywność obydwu drużyn\ldots
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+\end{document}
