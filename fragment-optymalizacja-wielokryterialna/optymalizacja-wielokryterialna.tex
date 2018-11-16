@@ -29,7 +29,7 @@
 \tableofcontents
 \newpage
 
-\section{Wspomagane wyszukiwanie drużyn}
+\section{Wspomagane wyszukiwanie drużyn - wstęp teoretyczny}
 
 \subsection{Problem optymalizacji wielokryterialnej}
 
@@ -71,23 +71,28 @@ Metoda ważonych kryteriów polega na opisaniu funkcji oceny decyzji jako sumy w
 
 Jednym z podstawowych zadań systemu jest wspomaganie wyboru przeciwników. System powinien zaproponować kapitanowi drużyny listę sugerowanych rywali będącą jak najbardziej dopasowaną do jego preferencji. Można zdefiniować wiele kryteriów, które wpływają na jakość dopasowania. Moga to być m.in średni wiek zawodników, łączny staż gry, odległość punktów macierzystych drużyn, pokrycie preferowanych godzin gry, poziom fair play drużyny przeciwnej, ocena poprzednich rozgrywek z daną drużyną, poziom rankingowy w systemie. 
 
-
-\subsection{Propozycja algorytmu}
-
-<< Tutaj powstanie opis algorytmu, który będzie zastosowany w systemie >>
-
-\begin{comment}
-I tez ze funkcja agregujaca nie bedzie zwracac decyzji optymalnej a raczej przyporzadkowanie decyzjom wartosci funkcji oceny
-Modyfikacja - filtrowanie oraz boost 
-
-Mozna napisac ze minus tej metody jakim jest trudnosc dobrania parametrow tutaj moze okazac sie plusem poniewaz kapitan moze to wybrac
-System musi być w stanie zaproponować kapitanowi drużyny listę sugerowanych rywali będącą jak najbardziej dopasowaną do jego preferencji. Kapitan może sam wybrać wagę kryteriów ze względu na preferencje, system nie jest w stanie przewidzieć czy kapitan
-\end{comment}
-
-
 \subsubsection{Wymagania czasowe dla algorytmu}
 
-System musi być w stanie dokonać selekcji przeciwników w rozsądnym czasie. Rozsądnym limitem czasowym jaki kapitan może oczekiwać na wynik działania systemu jest 5 sekund. Wyszukiwanie przeciwników będzie odbywać się dla konkretnej dyscypliny sportu oraz regionu. Biorąc pod uwagę skalę systemu, można założyć, że w danym regionie nie powinno być więcej aniżeli 5000 drużyn. W przypadku większych regionów powinny one zostać podzielone na mniejsze podregiony. Z tych ustaleń wynika, że zaproponowany oraz zaimplementowany algorytm powinien być w stanie przetworzyć 5000 drużyn w czasie nie większym niż 5 sekund. Zaimplementowany algorytm zostanie przetestowany pod kątem tych ograniczeń.
+System musi być w stanie dokonać oceny przeciwników w rozsądnym czasie. Rozsądnym limitem czasowym jaki kapitan może oczekiwać na wynik działania systemu jest 5 sekund. Wyszukiwanie przeciwników będzie odbywać się dla konkretnej dyscypliny sportu oraz regionu. Biorąc pod uwagę skalę systemu, można założyć, że w danym regionie nie powinno być więcej aniżeli 5000 drużyn. W przypadku większych regionów powinny one zostać podzielone na mniejsze podregiony. Z tych ustaleń wynika, że zaproponowany oraz zaimplementowany algorytm powinien być w stanie przetworzyć 5000 drużyn w czasie nie większym niż 5 sekund. Zaimplementowany algorytm zostanie przetestowany pod kątem tych ograniczeń.
+
+\subsubsection{Propozycja algorytmu - ogólny schemat}
+
+Proponując algorytm należy mieć na uwadzę domenę problemu oraz charakter danych, na jakich będzie on operował. W związku z tym do tradycyjnego schematu oceny rozwiązań zostanie wprowadzona modyfikacja.
+
+ Normalizacja poszczególnych kryteriów będzie przebiegać przy użyciu różnych funkcji, dopasowanych do charakteru danych. Przykładem uzasadniającym konieczność zastosowania takiej modyfikacji może być porównanie dwóch kryteriów: odległości drużyn oraz średniego wieku zawodników. O ile kryterium odległości może być normalizowane w pełni liniowo, o tyle dla różnicy wieku taka metoda normalizacji jest błędna. Różnica wieku między dwoma zawodnikami, którzy mają 15 oraz 20 lat jest znacznie bardziej istotna aniżeli różnica między zawodnikami w wieku 30 oraz 35 lat - nie można tutaj zastosować operatora liniowego. Dodatkowo w domenie problemu można wyróżnić kryteria nieliczbowe - cechy drużyny, które mogą mieć duży wpływ na jakość dopasowania, np. zadeklarowana chęć ponownej gry z daną drużyną.   
+
+Jako funkcja agregujaca wybrana została tradycyjna metoda ważonych kryteriów ze względu na możliwość dynamicznego doboru wag poszczególnych kryteriów. Nietóre z tych wag będą dobierane przez kapitana zgodnie z preferencjami jego drużyny.
+
+Na schemacie (Rysunek 2.) został przedstawiony ogólny schemat algorytmu. Symbole c1, c2, c3 oznaczają przykładowe kryteria.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=15cm]{algorytm-2.PNG}
+\caption{Uogólniony schemat algorytmu oceny decyzji}
+\end{figure}
+
+
+
 
 \begin{thebibliography}{99}
 \bibitem{pa}dr hab. Mieczysław Połoński prof. SGGWl:
