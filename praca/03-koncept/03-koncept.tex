@@ -30,7 +30,35 @@ Kluczową funkcjonalnością systemu jest wspomaganie poszukiwania rywali do gry
 
 \subsection{Kryteria dopasowania}
 
+Podstawowym kryterium dopasowywania drużyn będzie maksymalizacja satysfakcji z gry. Poziom satysfakcji stanowi jednak kryterium, które jest wręcz niemożliwe do ustalenia wprost. Z tego powodu zostały zdefiniowane przesłanki, które mogą wpływać na większą satysfakcję drużyn z rozgrywki:
+
+\begin{itemize}
+\item{przybliżony wiek zawodników,}
+\item{przybliżony poziom umiejętności zawodników,}
+\item{przybliżona forma zawodników,}
+\item{zachowanie fair-play drużyny przeciwnej,}
+\item{dobre wspomnienia po poprzednich rozgrywkach.}
+\end{itemize}
+
+Istotne z punktu widzenia kapitana szukającego przeciwników mogą być również czynniki wpływające na możliwość umówienia spotkania. Mogą być to na przykład informacje dotyczące aktywności drużyny przeciwnej, czy na przykład jej preferowane godziny gry.
+
+Powyższe kryteria będą uwzględnione w projektowanym mechanizmie wspomaganego wyszukiwania przeciwników. Mechanizm powinien zostać zaimplementowany w sposób rozszerzalny, aby możliwe było definiowanie nowych kryteriów wraz z potrzebami rozwojowymi systemu.
+
 \subsection{Problem optymalizacji wielokryterialnej}
+
+Problem optymalizacji wielokryterialnej jest rozszerzeniem problemu optymalizacji jednokryternialnej, gdzie poszukiwana jest decyzja optymalna, ze zbioru możliwych decyzji na podstawie jednego kryterium. Problem ten sprowadza się do poszukiwania maksimum (bądź minimum) funkcji oceny danego kryterium. Jeżeli kryterium jest ilość, np. maksymalna prędkość samochodu, to podejmując decyzje o zakupie jedynie ze względu na to kryterium naturalnie wybierzemy samochód, który osiąga największą prędkość. 
+
+Często jednak podjecie decyzji może być uwarunkowane większą liczbą czynników, na przykład, w przypadku samochodu może to być jego cena, koszt utrzymania, czy czynniki nie ilościowe takie jak jego kolor (w zależności od preferencji kupca). Podejmując decyzje należy rozpatrzyć wiele kryteriów oraz relacje miedzy nimi. Decyzja, która jest optymalna ze względu na jedno z kryteriów, nie musi być optymalna ze względu na pozostałe - z reguły tak nie jest.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\linewidth]{03-koncept/rys/tradycyjne-algorytmy-opt.PNG}
+\caption{Ogólny schemat metody rozwiązywania problemu optymalizacji wielokryterialnej}
+\label{fig:diagram-trad-alg-opt}
+\end{figure}
+
+Problem podobnej natury występuje w projektowanym systemie. Poszukiwanie rywali do gry można sprowadzić do poszukiwania najlepszych decyzji wyboru drużyny spośród kwalifikujących się drużyn zdefiniowanych w systemie. Przykładowe kryteria wpływające na wartość funkcji oceny dla poszczególnych decyzji (rywali) zostały zdefiniowane w poprzednim podrozdziale.
+
 
 \subsection{Metoda ważonych kryteriów}
 
