@@ -2,6 +2,8 @@
 
 W niniejszym rozdziale ...
 
+Todo dopisać ważne biblioteki itp. AntDesign ogólnie i implementacja nz zoorro itp..
+
 \section{Architektura systemu}
 
 Ze względu na potrzebę szerokiej dostępności platformy zostanie ona zrealizowana jako system webowy w architekturze klient - serwer. Interfejsem użytkownika końcowego będzie aplikacja kliencka typu SPA - Single Page Application uruchamiana w przeglądarce internetowej. Aplikacja ta będzie komunikować się z API wystawionym przez aplikację backendową umieszczoną na serwerze w sieci.  Aplikacja backendowa z kolei będzie komunikować się z bazą danych w celu odczytu oraz zapisu informacji. 
@@ -38,12 +40,20 @@ Aplikacja backendowa zostanie utworzona w języku Java (w wersji 1.8) z użyciem
 \item chęć poszerzenia wiedzy na temat tych technologii.
 \end{itemize}
 
+\subsection{Swagger}
+
+\subsection{JWT}
+
+\subsection{MySQL} 
+
+Relacyjna baza danych została wybrana ze względu na przewidywaną dużą ilość powiązań między encjami w systemie. MySQL od firmy Oracle jest darmowym, bezpiecznym oraz wydajnym systemem zarządzania bazą danych.  Istotnym uzasadnieniem wyboru tej technologii jest również bardzo dobra integracja z frameworkiem Spring.
+
 \subsection{Angular}
 
 Główną technologią wykorzystywaną po stronie front endu będzie framework do tworzenia SPA rozwijany przez Google - Angular (w wersji 6.1.0). Framework ten ułatwia budowę skalowalnych i szybkich aplikacji z bogatym interfejsem użytkownika. 
 
 W celu usprawnienia procesu rozwoju aplikacji zostanie wykorzystana biblioteka ngrx (w wersji 6.1.0), wspomagająca zarządzanie stanem aplikacji. Wykorzystanie tej biblioteki znacznie ułatwia analizę działania aplikacji oraz diagnozowanie błędów.
 
-\subsection{MySQL} 
+\subsection{NG-ZORRO}
 
-Relacyjna baza danych została wybrana ze względu na przewidywaną dużą ilość powiązań między encjami w systemie. MySQL od firmy Oracle jest darmowym, bezpiecznym oraz wydajnym systemem zarządzania bazą danych.  Istotnym uzasadnieniem wyboru tej technologii jest również bardzo dobra integracja z frameworkiem Spring.
+\subsection{Heroku}

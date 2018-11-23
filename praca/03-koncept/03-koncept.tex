@@ -1,7 +1,14 @@
-\chapter{Koncept}
+\chapter{Koncepcja systemu Team Challenge}
+
+\begin{comment}
+Projekt koncepcyjny? Koncepcja systemu? Systemu NAZWA_WLASNA
+\end{comment}
 
 W niniejszym rozdziale zostanie przedstawiony koncept głównych funkcjonalności projektowanego systemu. Podczas pracy koncepcyjnej autor pracy miał na względzie główny cel systemu jakim jest zrzeszanie zawodników. Proponowane funkcjonalności mają umożliwić osiągnięcie tego celu. Tworząc koncept autor kierował się znajomością potrzeb grupy docelowej, której sam jest częścią, a niejednokrotnie swoje pomysły weryfikował z innymi zawodnikami.
-  
+
+
+System został nazwany Team Challenge. Nazwa ta nawiązuje do głównej funkcjonalności systemu, czyli do wspierania rywalizacji pomiędzy drużynami poprzez rzucanie wyzwań.
+
   
 \section{Baza wiedzy}
 
@@ -46,7 +53,7 @@ Powyższe kryteria będą uwzględnione w projektowanym mechanizmie wspomaganego
 
 \subsection{Problem optymalizacji wielokryterialnej}
 
-Problem optymalizacji wielokryterialnej jest rozszerzeniem problemu optymalizacji jednokryternialnej, gdzie poszukiwana jest decyzja optymalna, ze zbioru możliwych decyzji na podstawie jednego kryterium. Problem ten sprowadza się do poszukiwania maksimum (bądź minimum) funkcji oceny danego kryterium. Jeżeli kryterium jest ilość, np. maksymalna prędkość samochodu, to podejmując decyzje o zakupie jedynie ze względu na to kryterium naturalnie wybierzemy samochód, który osiąga największą prędkość. 
+Problem optymalizacji wielokryterialnej jest rozszerzeniem problemu optymalizacji jednokryternialnej, gdzie poszukiwana jest decyzja optymalna, ze zbioru możliwych decyzji na podstawie jednego kryterium. Problem ten sprowadza się do poszukiwania maksimum (bądź minimum) funkcji oceny danego kryterium. Jeżeli kryterium jest ilościowe, np. maksymalna prędkość samochodu, to podejmując decyzje o zakupie jedynie ze względu na to kryterium naturalnie wybierzemy samochód, który osiąga największą prędkość. 
 
 Często jednak podjecie decyzji może być uwarunkowane większą liczbą czynników, na przykład, w przypadku samochodu może to być jego cena, koszt utrzymania, czy czynniki nie ilościowe takie jak jego kolor (w zależności od preferencji kupca). Podejmując decyzje należy rozpatrzyć wiele kryteriów oraz relacje miedzy nimi. Decyzja, która jest optymalna ze względu na jedno z kryteriów, nie musi być optymalna ze względu na pozostałe - z reguły tak nie jest.
 
@@ -57,10 +64,34 @@ Często jednak podjecie decyzji może być uwarunkowane większą liczbą czynni
 \label{fig:diagram-trad-alg-opt}
 \end{figure}
 
+Tradycyjnym sposobem rozwiązania problemu jest w pierwszej kolejności znormalizowanie wartości kryteriów do przedziału wartości <0,1>, a następnie dokonanie wyboru korzystając z wybranej funkcji agregującej [?]. Ogólny schemat został przedstawiony na rysunku ~\ref{fig:diagram-trad-alg-opt}
+
 Problem podobnej natury występuje w projektowanym systemie. Poszukiwanie rywali do gry można sprowadzić do poszukiwania najlepszych decyzji wyboru drużyny spośród kwalifikujących się drużyn zdefiniowanych w systemie. Przykładowe kryteria wpływające na wartość funkcji oceny dla poszczególnych decyzji (rywali) zostały zdefiniowane w poprzednim podrozdziale.
 
+\subsection{Rozszerzenie tradycyjnego algorytmu}
+
+Proponując algorytm należy mieć na uwadze domenę problemu oraz charakter danych, na jakich będzie on operował. W związku z tym do tradycyjnego schematu oceny rozwiązań zostanie wprowadzona modyfikacja.
+
+ Normalizacja poszczególnych kryteriów będzie przebiegać przy użyciu różnych funkcji, dopasowanych do charakteru danych. Przykładem uzasadniającym konieczność zastosowania takiej modyfikacji może być porównanie dwóch kryteriów: odległości drużyn oraz średniego wieku zawodników. O ile kryterium odległości może być normalizowane w pełni liniowo, o tyle dla różnicy wieku taka metoda normalizacji jest błędna. Różnica wieku między dwoma zawodnikami, którzy mają 15 oraz 20 lat jest znacznie bardziej istotna aniżeli różnica między zawodnikami w wieku 30 oraz 35 lat - nie można tutaj zastosować operatora liniowego. Dodatkowo w domenie problemu można wyróżnić kryteria nieliczbowe - cechy drużyny, które mogą mieć duży wpływ na jakość dopasowania, np. zadeklarowana chęć ponownej gry z daną drużyną.   
 
 \subsection{Metoda ważonych kryteriów}
 
+Metoda ważonych kryteriów polega na opisaniu funkcji oceny decyzji jako sumy ważonej ocen poszczególnych kryteriów [?]. Konieczne jest przyporządkowanie wagi dla każdego z kryteriów. Ocena poszczególnych decyzji obliczana jest według wzoru: 
+
+TODO wzór
+
+Metoda ta została wybrana ze względu na możliwość dynamicznego doboru wag poszczególnych kryteriów. Niektóre z tych wag będą dobierane przez kapitana zgodnie z preferencjami jego drużyny. Rysunek~\ref{fig:diagram-alg-ext} przedstawia schemat działania algorytmu przewidzianego w systemie.
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{03-koncept/rys/algorytm.PNG}
+\caption{Rozszerzony schemat algorytmu oceny decyzji}
+\label{fig:diagram-alg-ext}
+\end{figure}
+
+
 \section{Wspomaganie umawiania się na rozgrywkę}
+
+Kolejną bazową funkcjonalnością systemu jest wspieranie przebiegu umawiania meczy. TODO o sposobie negocjacji Potem o wprowadzaniu wyniku oraz oceny druzyny.
 
