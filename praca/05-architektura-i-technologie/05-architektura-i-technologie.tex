@@ -1,12 +1,12 @@
 \chapter{Architektura i technologie}
 
-W niniejszym rozdziale ...
+Niniejszy rozdział został poświęcony ogólnemu opisowi architektury systemu oraz zastosowanych technologii. Dla poszczególnych wyborów zostały przedstawione przesłanki, którymi kierował się autor tej pracy. 
 
-Todo dopisać ważne biblioteki itp. AntDesign ogólnie i implementacja nz zoorro itp..
+Istotnym czynnikiem mającym wpływ na wybór technologii oraz wzorców architektonicznych była chęć poszerzenia wiedzy autora niniejszej pracy w ich zakresie. Cechą wspólną wszystkich zastosowanych rozwiązań jest szeroki dostęp do materiałów w postaci dokumentacji oraz pozycji książkowych. 
 
 \section{Architektura systemu}
 
-Ze względu na potrzebę szerokiej dostępności platformy zostanie ona zrealizowana jako system webowy w architekturze klient - serwer. Interfejsem użytkownika końcowego będzie aplikacja kliencka typu SPA - Single Page Application uruchamiana w przeglądarce internetowej. Aplikacja ta będzie komunikować się z API wystawionym przez aplikację backendową umieszczoną na serwerze w sieci.  Aplikacja backendowa z kolei będzie komunikować się z bazą danych w celu odczytu oraz zapisu informacji. 
+Ze względu na potrzebę szerokiej dostępności platformy została ona zrealizowana jako system webowy w architekturze klient - serwer. Interfejsem użytkownika końcowego jest aplikacja kliencka typu SPA - Single Page Application uruchamiana w przeglądarce internetowej. Aplikacja ta komunikuje się z API wystawionym przez aplikację backendową umieszczoną na serwerze w sieci.  Aplikacja backendowa z kolei komunikuje się z bazą danych w celu odczytu oraz zapisu informacji. 
 
 \begin{figure}[ht]
 \centering
@@ -15,10 +15,10 @@ Ze względu na potrzebę szerokiej dostępności platformy zostanie ona zrealizo
 \label{fig:diagram-og-architekt}
 \end{figure}
 
-Elementy otoczone linią kreskowaną na diagramie nie będą przedmiotem tej pracy, jednak podkreślają uniwersalność API oraz wskazują możliwości rozwojowe oraz integracyjne systemu.
+Elementy otoczone linią kreskowaną na diagramie nie są przedmiotem tej pracy, jednak podkreślają uniwersalność API oraz wskazują możliwości rozwojowe oraz integracyjne systemu.
 
 \subsection{RESTful API}
-API wystawiane przez część serwerową będzie zaprojektowane w oparciu styl architektoniczny REST, który zakłada komunikację klient-serwer z uwzględnieniem następujących zasad: 
+API wystawiane przez część serwerową zostało zaprojektowane w oparciu styl architektoniczny REST, który zakłada komunikację klient-serwer z uwzględnieniem następujących zasad: 
 \begin{itemize}
 \item użycie podstawowych metody protokołu HTTP czyli - GET, PUT, POST oraz DELETE,
 \item identyfikacja zasobów poprzez URL,
@@ -31,7 +31,7 @@ Użycie podstawowych metod protokołu HTTP pozytywnie wpływa na czytelność or
 
 \subsection{Spring Boot}
 
-Aplikacja backendowa zostanie utworzona w języku Java (w wersji 1.8) z użyciem frameworka Spring Boot (w wersji 2.0.3). Technologie te zostały wybrane ze względu na następujące czynniki:
+Aplikacja backendowa została zaimplementowana w języku Java (w wersji 1.8) z użyciem frameworka Spring Boot (w wersji 2.0.3). Technologie te zostały wybrane ze względu na następujące czynniki:
  \begin{itemize}
 \item rozwiązania open source,
 \item duże grono użytkowników oraz baza materiałów w sieci,
@@ -42,7 +42,11 @@ Aplikacja backendowa zostanie utworzona w języku Java (w wersji 1.8) z użyciem
 
 \subsection{Swagger}
 
+Swagger został wykorzystany do dostarczenia dokumentacji RESTowego API bla bla.
+
 \subsection{JWT}
+
+Technologia Json Web Token została wybrana jako sposób realizacji autoryzacji zapytań do API systemu. JWT jest technologią autoryzacji bezstanowej, przez co bardzo często jest używane do zabezpieczania końcówek REST'owych.
 
 \subsection{MySQL} 
 
@@ -54,6 +58,6 @@ Główną technologią wykorzystywaną po stronie front endu będzie framework d
 
 W celu usprawnienia procesu rozwoju aplikacji zostanie wykorzystana biblioteka ngrx (w wersji 6.1.0), wspomagająca zarządzanie stanem aplikacji. Wykorzystanie tej biblioteki znacznie ułatwia analizę działania aplikacji oraz diagnozowanie błędów.
 
-\subsection{NG-ZORRO}
+\subsection{AntDesign - NgZorro}
 
 \subsection{Heroku}

@@ -1,21 +1,45 @@
 \chapter{Implementacja i działanie systemu Team Challenge}
 
-\section{Wykorzystane narzędzia}
+\section{Środowisko implementacji}
 
-Tabelka z programami IntelliJ, Webstorm, Postman itp.
+Implementacja systemu odbywała się przy użyciu komputera wyposażonego w 8GB pamięci fizycznej oraz cztero-rdzeniowy procesor Intel Core i5-6300HQ (taktowanie 2.30GHz). Sprzęt o przytoczonych parametrach okazał się w pełni wystarczający dla przebiegu implementacji oraz lokalnego uruchamiania serwera aplikacji. Systemem operacyjnym używanym przy implementacji był Windows w wersji 10 Education. Wszystkie użyte programy i narzędzia dobrze współpracują z tym systemem.
+
+\subsection{Wykorzystane narzędzia}
+
+
+\begin{table}[H]
+\centering\small
+\caption{Zestawienie narzędzi wykorzystywanych podczas implementacji systemu}
+\label{tab:szablon}
+\begin{tabularx}{\linewidth}{|p{.2\linewidth}|p{.1\linewidth}|p{.1\linewidth}|X|}\hline
+Nazwa programu & Wersja & Producent & Cel\\ \hline\hline
+
+IntelliJ IDEA & 2018.2 & Jetbrains & Implementacja aplikacji serwerowej (Java) \\ \hline
+
+Webstorm & 2018.2 & Jetbrains & Implementacja aplikacji klienckiej (Angular) \\ \hline
+
+Postman & 6.5.2 & Postman & Testowanie końcówek RESTowych aplikacji serwerowej \\ \hline
+
+Google Chrome & 70 & Google & Testowanie aplikacji klienckiej \\ \hline
+
+Git & 2.18.0 & - & Kontrola wersji \\ \hline
+
+\end{tabularx}
+\end{table}
 
 \section{Przebieg implementacji aplikacji serwerowej}
 
-\subsection{Środowisko}
-
-Na jakim komputerze, jaki program itp. O postmanie itp.
-
+\subsection{Struktura projektu}
 
 Struktura katalogow 
 
 \subsection{Warstwy aplikacji}
 
+DTO, RestController, Service, Dao
+
 \subsection{Metody dostępu do danych}
+
+JDBC Hibernate JPA (SPring Data JPA)
 
 JPA, Paginacja dla dużych zbiorów danych, Specification
 
@@ -26,6 +50,8 @@ Przechowywanie haseł, Autoryzacja zapytań
 \subsection{Algorytm poszukiwania rywali}
 
 \section{Przebieg implementacji aplikacji klienckiej}
+
+Zarządzanie stanem aplikacji Obsluga stanu aplikacji
 
 \subsection{Środowisko}
 
