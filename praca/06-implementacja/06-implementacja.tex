@@ -160,8 +160,6 @@ Warstwa zasobów jest szczególna, z tego względu, że stanowi interfejs sytemu
 
 Na poziomie warstwy zasobów odbywa się również walidacja przychodzących danych.
 
-Tabelka z endpointami?? Moze lepiej w załączniku! tutaj odwolanie
-
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[label=list:resource, caption=Przykładowa rejestracja kontrolera, basicstyle=\footnotesize\ttfamily]
 
@@ -188,21 +186,165 @@ public class TeamResource {
 \end{lstlisting}
 \end{minipage}
 
+Pełna specyfikacja REST API została przedstawiona w załączniku X.
+
 \subsection{Algorytm poszukiwania rywali}
 
-Szczegóły działania algorytmu, w jaki sposób normalizacja.
+Algorytm poszukiwania rywali został zaimplementowany w oparciu o zagadnienie optymalizacji wielokryterialnej, które zostało przybliżone w trzecim rozdziale niniejszej pracy. Podczas prac nad algorytmem uwzględniono domenę problemu oraz charakter danych, na jakich będzie on operował. W związku z tym tradycyjny schemat oceny decyzji został rozszerzony, co zostało opisane w dalszej części tego rozdziału. Rysunek~\ref{fig:diagram-alg-ext} przedstawia uproszczony schemat działania algorytmu zrealizowanego w systemie.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{03-koncept/rys/algorytm.PNG}
+\caption{Schemat działania algorytmu oceny decyzji}
+\label{fig:diagram-alg-ext}
+\end{figure}
+
+\subsubsection{Kryteria}
+
+W systemie zostały wyszczególnione dwa główne rodzaje kryteriów - numeryczne oraz logiczne. Kryteria numeryczne obejmują kryteria, które da się zmierzyć i wyrazić w postaci liczbowej. Uwzględniono tutaj takie kryteria jak: różnica wieku, różnica umiejętności oraz odległość między drużynami. Kryteria logiczne wyrażają dodatkowe wskaźniki, które mają wpływ na dobre dopasowanie drużyn, jednak nie są policzalne.  Kryteriom tym przypisane są wartości logiczne, które oznaczają czy dane kryterium zostało spełnione. Przykładowo wartość logiczna kryterium dotyczącego poziomu fair play będzie ustawiona jeżeli średnia ocen fair play potencjalnych rywali jest większa lub równa 4 (maksymalnie 5).
+
+Dodatkowo wyszczególniono generyczną klasę, która opakowuje dowolne kryterium dodając informację o znormalizowanej wartości liczbowej. 
+
+Zastosowaną hierarchię klas przedstawiono na rysunku ref. Rozbudowa funkcjonalności o nowe kryteria sprowadza się do utworzenia dodatkowej implementacji w odpowiednim miejscu hierarchii.  
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{06-implementacja/rys/criterion-package-classes.PNG}
+\caption{Hierarchia klas: kryteria}
+\label{fig:criterion-classes}
+\end{figure}
+
+Kryteria dla poszczególnych decyzji generowane są na podstawie zgromadzonych danych o drużynach, zawodnikach oraz wynikach spotkań. Przykładową metodę przedstawiono na listingu XX. 
+
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[label=list:age-crit-gen, caption=Przykładowa rejestracja kontrolera, basicstyle=\footnotesize\ttfamily]
+public AgeCriterion ageCriteria(Team hostTeam, Team otherTeam) {
+  double averageAgeHostTeam = hostTeam.getPlayers().stream()
+                .mapToDouble(playerService::getAge).average().orElse(0);
+  double averageAgeOtherTeam = otherTeam.getPlayers().stream()
+                .mapToDouble(playerService::getAge).average().orElse(0);
+
+  return new AgeCriterion(
+    averageAgeOtherTeam - averageAgeHostTeam, 
+    averageAgeHostTeam, 
+    averageAgeOtherTeam
+  );
+}
+\end{lstlisting}
+\end{minipage}
+
+\subsubsection{Normalizacja kryteriów}
+
+ Normalizacja poszczególnych kryteriów przebiega przy użyciu różnych funkcji, dopasowanych do charakteru danych. Przykładem uzasadniającym konieczność zastosowania takiej modyfikacji może być porównanie dwóch kryteriów: odległości drużyn oraz średniego wieku zawodników. O ile kryterium odległości może być normalizowane w pełni liniowo, o tyle dla różnicy wieku taka metoda normalizacji jest błędna. Różnica wieku między dwoma zawodnikami, którzy mają 15 oraz 20 lat jest znacznie bardziej istotna aniżeli różnica między zawodnikami w wieku 30 oraz 35 lat - nie można tutaj zastosować operatora w pełni liniowego. Dodatkowo w domenie problemu wyróżniono kryteria nieliczbowe - cechy drużyny, które mogą mieć duży wpływ na jakość dopasowania, np. zadeklarowana chęć ponownej gry z daną drużyną.  
+ 
+O metodach normalizacji - LinearDecay itp. 
+ 
+ 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{06-implementacja/rys/normalizer-hierarchy.PNG}
+\caption{Hierarchia klas: normalizacja}
+\label{fig:criterion-classes}
+\end{figure}
+
+\subsubsection{Metoda ważonych kryteriów}
+
+Metoda ważonych kryteriów polega na opisaniu funkcji oceny decyzji jako sumy ważonej ocen poszczególnych kryteriów [?]. Konieczne jest przyporządkowanie wagi dla każdego z kryteriów. Ocena poszczególnych decyzji obliczana jest według wzoru: 
+
+\begin{equation}\label{eq:mwk}
+F(x)=\sum_{i=1}^{k}w_{i}f_{i}(x)
+\end{equation}
+
+gdzie k - ilość kryteriów, x - wektor rozwiązań, $w_{i}$ - wagi takie że:
+
+\begin{equation*}
+w \in [0, 1] \mbox{ oraz } \sum_{i=1}^{k}w_{i} = 1
+\end{equation*}
+
+Metoda ta została wybrana ze względu na możliwość dynamicznego doboru wag poszczególnych kryteriów. Niektóre z tych wag będą dobierane przez kapitana zgodnie z preferencjami jego drużyny. 
+
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[label=list:resource, caption=Przykładowa rejestracja kontrolera, basicstyle=\footnotesize\ttfamily]
+
+@Service
+public class WeightedCriteriaAggregator {
+
+    public double aggregate(List<WeightedCriteria> weightedCriteria) {
+      return aggregate(weightedCriteria.stream());
+    }
+
+    public double aggregate(Stream<WeightedCriteria> stream) {
+      return stream
+      .mapToDouble(
+       crit -> crit.getWeight() * crit.getCriteria().getNormalizedValue()
+       )
+      .sum();
+    }
+
+}
+
+\end{lstlisting}
+\end{minipage}
 
 \section{Implementacja aplikacji klienckiej}
 
-Zarządzanie stanem aplikacji Obsługa stanu aplikacji formularze, Walidacja formularzy, pare screenow, odowlanie do instrukcji uzytkownika w zalaczniku
+\subsection{Modularność}
+
+Modularyzacja + podział na komponenty
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{06-implementacja/rys/modularyzacja.PNG}
+\caption{Hierarchia klas: normalizacja}
+\label{fig:criterion-classes}
+\end{figure}
+
+
+\subsection{Stan aplikacji}
+
+Stan aplikacji
+Zarządzanie stanem aplikacji Obsługa stanu aplikacji 
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{06-implementacja/rys/modularyzacja.PNG}
+\caption{Hierarchia klas: normalizacja}
+\label{fig:criterion-classes}
+\end{figure}
+
+\subsection{Formularze}
+
+formularze, Walidacja formularzy, pare screenow, odowlanie do instrukcji uzytkownika w zalaczniku
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{06-implementacja/rys/modularyzacja.PNG}
+\caption{Hierarchia klas: normalizacja}
+\label{fig:criterion-classes}
+\end{figure}
 
 \section{Bezpieczeństwo}
 
-Szczególną uwagę poświęcono implementacji zabezpieczeń system oraz zgromadzonych danych użytkowników. Funkcjonalności związane z bezpieczeństwem zostały zrealizowane bazując na module Spring Security, który dostarcza wiele przydatnych mechanizmów oraz możliwości ich konfiguracji.
+Szczególną uwagę poświęcono implementacji zabezpieczeń systemu oraz zgromadzonych danych użytkowników. Funkcjonalności związane z bezpieczeństwem zostały zrealizowane bazując na module Spring Security, który dostarcza wiele przydatnych mechanizmów oraz możliwości ich konfiguracji.
 
-Hasła użytkowników przechowywane są w formie zaszyfrowanej za pomocą funkcji skrótu BCrypt. <Możę coś więcej>
-
-
+Hasła użytkowników przechowywane są w formie zaszyfrowanej za pomocą funkcji skrótu BCrypt. Spring Security dostarcza klasę implementującą ten algorytm - BCryptPasswordEncoder. Główną zaletą takiego sposobu szyfrowania jest generowanie losowego ciągu znaków, tak zwanej soli, który dodatkowo wzmacnia bezpieczeństwo hasła. Zastosowanie soli przy hashowaniu znacznie utrudnia złamanie hasła przez ataki przy użyciu tęczowych tabel. W przypadku algorytmu bcrypt wygenerowana sól jest przechowywana razem z zaszyfrowanym hasłem w bazie danych. W przypadku prób logowania jest ona wyciągana z bazy oraz używana do przetworzenia podanego hasła w celu porównania zgodności.
 
 
-Przechowywanie haseł, Autoryzacja zapytań, JWT
+Autoryzacja zapytań (JWT)
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{06-implementacja/rys/modularyzacja.PNG}
+\caption{Hierarchia klas: normalizacja}
+\label{fig:criterion-classes}
+\end{figure}

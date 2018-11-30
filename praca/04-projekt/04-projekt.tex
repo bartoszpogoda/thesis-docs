@@ -1,6 +1,6 @@
 \chapter{Projekt systemu Team Challenge}
 
-W niniejszym rozdziale przedstawiony został projekt systemu sporządzony na podstawie ogólnej koncepcji opisanej w poprzedniej części. W ramach projektu wydzielono role aktorów na stronie, następnie sporządzono specyfikację wymagań funkcjonalnych. Na podstawie tychże wymagań zostały zamodelowane encje występujące w systemie, co zostało zademonstrowane na diagramie związków encji.
+W niniejszym rozdziale przedstawiony został projekt systemu sporządzony na podstawie ogólnej koncepcji opisanej w poprzedniej części. W ramach projektu wydzielono role aktorów na stronie, następnie sporządzono specyfikację wymagań funkcjonalnych. Na podstawie tychże wymagań zostały zamodelowane encje występujące w systemie, co zostało zademonstrowane na diagramie związków encji. W ostatniej części rozdziału przedstawiono diagram stanów dla rzucanego wyzwania.
 
 \section{Role w systemie}
 
@@ -26,7 +26,7 @@ W systemie zostały wyróżnione następujące role.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.3\linewidth]{04-projekt/rys/roles.PNG}
+\includegraphics[width=0.25\linewidth]{04-projekt/rys/roles.PNG}
 \caption{Diagram zależności między grupami w systemie}
 \label{fig:diagram-trad-alg-opt}
 \end{figure}
@@ -34,9 +34,57 @@ W systemie zostały wyróżnione następujące role.
 
 \section{Wymagania funkcjonalne}
 
-W poniższych tabelach przedstawiono wymagania funkcjonalne podzielone na obszary tematyczne.
+Wymagania funkcjonalne zostały zdefiniowane, aby w jasny sposób opisać oczekiwania wobec systemu oraz jego zakres odpowiedzialności. Dokładne definiowanie wymagań pozwala na zidentyfikowanie możliwych błędów koncepcyjnych jeszcze przed rozpoczęciem implementacji \cite{requirements}. Specyfikacja wymagań za pomocą przypadków użycia w sposób czytelny przedstawia możliwe interakcje poszczególnych aktorów z systemem \cite{usecase}.
 
-\subsubsection{Konta użytkowników}
+W poniższych sekcjach przedstawiono diagramy przypadków użycia. W celu poprawienia czytelności, przypadki użycia dla niektórych aktorów zostały przedstawione na oddzielnych diagramach. Dodatkowo dla wybranych spośród najbardziej istotnych przypadków zostały sporządzone szczegółowe opisy.
+
+
+\subsection{Diagramy przypadków użycia}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{04-projekt/rys/usecase1.PNG}
+\caption{Diagram przypadków użycia - gość oraz użytkownik}
+\label{fig:diagram-trad-alg-opt}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{04-projekt/rys/usecase2.PNG}
+\caption{Diagram przypadków użycia - zawodnik}
+\label{fig:diagram-trad-alg-opt}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{04-projekt/rys/usecase4.PNG}
+\caption{Diagram przypadków użycia - moderator oraz administrator}
+\label{fig:diagram-trad-alg-opt}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{04-projekt/rys/usecase3.PNG}
+\caption{Diagram przypadków użycia - kapitan}
+\label{fig:diagram-trad-alg-opt}
+\end{figure}
+
+
+\subsection{PU Rejestracja}
+
+Opis krótki?
+
+\subsubsection{Warunki początkowe}
+Gość nie posiadający konta w systemie
+\subsubsection{Warunki końcowe}
+Konto utworzone w systemie. Możliwe zalogowanie.
+\subsubsection{Przebieg}
+\begin{enumerate}
+  \item System wyświetla formularz rejestracyjny.
+  \item Użytkownik wypełnia formularz podając następujące dane: adres e-mail, imię i nazwisko, hasło (dwukrotnie), datę urodzenia.
+
+\end{enumerate}
+
 
 \begin{table}[H]
 \centering\small
@@ -239,5 +287,17 @@ TeamReview & Wypełniony formularz oceny drużyny po zakończonym spotkaniu\\ \h
 \end{figure}
 
 Encje wraz ze swoimi atrybutami oraz powiązaniami zostały przedstawione w sposób graficzny na rysunku~\ref{fig:diagram-erd} za pomocą diagramu ERD.
+
+
+Diagram stanów wyzwania??!!
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{04-projekt/rys/state1.PNG}
+\caption{Diagram zależności między grupami w systemie}
+\label{fig:diagram-trad-alg-opt}
+\end{figure}
+
 
 
