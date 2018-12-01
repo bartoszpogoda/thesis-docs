@@ -1,6 +1,8 @@
 \chapter{Projekt systemu Team Challenge}
 
-W niniejszym rozdziale przedstawiony został projekt systemu sporządzony na podstawie ogólnej koncepcji opisanej w poprzedniej części. W ramach projektu wydzielono role aktorów na stronie, następnie sporządzono specyfikację wymagań funkcjonalnych. Na podstawie tychże wymagań zostały zamodelowane encje występujące w systemie, co zostało zademonstrowane na diagramie związków encji. W ostatniej części rozdziału przedstawiono diagram stanów dla rzucanego wyzwania.
+W niniejszym rozdziale przedstawiony został projekt systemu sporządzony na podstawie ogólnej koncepcji opisanej w poprzedniej części. W ramach projektu wydzielono role aktorów na stronie, następnie sporządzono specyfikację wymagań funkcjonalnych. Na podstawie wymagań funkcjonalnych zostały zamodelowane encje występujące w systemie, co zostało zademonstrowane na diagramie związków encji. W ostatniej części rozdziału przedstawiono diagram stanów dla rzucanego wyzwania.
+
+Diagramy przypadków użycia, związków encji oraz stanów zostały sporządzone przy użyciu narzędzia Visual Paradigm w wersji 15.1. Diagram zależności między grupami w systemie uzyskano przy pomocy internetowego narzędzia draw.io.
 
 \section{Role w systemie}
 
@@ -26,7 +28,7 @@ W systemie zostały wyróżnione następujące role.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.25\linewidth]{04-projekt/rys/roles.PNG}
+\includegraphics[width=0.5\linewidth]{04-projekt/rys/roles.PNG}
 \caption{Diagram zależności między grupami w systemie}
 \label{fig:diagram-trad-alg-opt}
 \end{figure}
@@ -69,188 +71,221 @@ W poniższych sekcjach przedstawiono diagramy przypadków użycia. W celu popraw
 \label{fig:diagram-trad-alg-opt}
 \end{figure}
 
-
+%% ------------------------ PU REJESTRACJA -------------
 \subsection{PU Rejestracja}
-
-Opis krótki?
-
 \subsubsection{Warunki początkowe}
-Gość nie posiadający konta w systemie
+Wywołanie przez gościa.
 \subsubsection{Warunki końcowe}
-Konto utworzone w systemie. Możliwe zalogowanie.
+Konto utworzone w systemie. Możliwe zalogowanie za pomocą podanego adresu e-mail oraz hasła.
 \subsubsection{Przebieg}
 \begin{enumerate}
   \item System wyświetla formularz rejestracyjny.
-  \item Użytkownik wypełnia formularz podając następujące dane: adres e-mail, imię i nazwisko, hasło (dwukrotnie), datę urodzenia.
+  \item Gość wypełnia formularz podając następujące dane: adres e-mail, imię i nazwisko, hasło (dwukrotnie), datę urodzenia.
+  \item Użytkownik wysyła formularz za pomocą przycisku "Zarejestruj się".
+  \begin{enumerate}[label=(\alph*)]
+     \item W przypadku błędnie wypełnionego formularza system wyróżnia niepoprawnie wypełnione pola. Powrót do kroku 2.
+   \end{enumerate}
+  \item System zapisuje informacje o nowo zarejestrowanym użytkowniku.
+  \item System informuje gościa o sukcesie oraz możliwości zalogowania.
+\end{enumerate}
+
+
+%% ------------------------ PU UTWORZENIE PROFILU ZAWODNIKA -
+\subsection{PU Utworzenie profilu zawodnika}
+
+\subsubsection{Warunki początkowe}
+Wywołanie przez użytkownika nie posiadającego profilu zawodnika.
+
+\subsubsection{Warunki końcowe}
+Zapisanie informacji o nowym zawodniku. Użytkownik staje się zawodnikiem oraz uzyskuje dostęp do nowych funkcjonalności.
+
+\subsubsection{Przebieg}
+
+\begin{enumerate}
+  \item System wyświetla pierwszy krok kreatora zawodnika - podstawowe dane.
+  \item Użytkownik wybiera region, w którym przebywa - wywołanie \textbf{PU Wybór regionu}.
+  \item Użytkownik wprowadza swój wzrost.
+  \begin{enumerate}[label=(\alph*)]
+     \item W przypadku nieprawidłowej wartości system niezwłocznie informuje o tym użytkownika.
+   \end{enumerate}
+  \item Użytkownik przechodzi do następnego kroku kreatora za pomocą przycisku "Dalej".
+  \begin{enumerate}[label=(\alph*)]
+     \item W przypadku nie wypełnienia wymaganego pola dotyczącego wzrostu system informuje o tym użytkownika wyróżniając to pole. Powrót do kroku 3.
+   \end{enumerate}
+     
+  \item System wyświetla drugi krok kreatora zawodnika - deklaracja poziomu umiejętności.
+  \item Użytkownik definiuje swój poziom umiejętności dopasowując się do jednego z wymienionych oraz opisanych profili umiejętności (początkujący, średnio-zaawansowany itp.).
+  \item Użytkownik określa częstość swojej gry spośród skończonej liczby możliwości przedstawionych przez system.
+  \item Użytkownik tworzy profil za pomocą przycisku "Utwórz profil".
+  \item System informuje użytkownika o pomyślnym utworzeniu profilu.
+  \item System wyświetla użytkownikowi opcjonalny krok formularza pozwalający na wgranie zdjęcia profilowego.
+ 
+  \begin{enumerate}[label=(\alph*)]
+     \item Użytkownik może wybrać zdjęcie oraz je przesłać.
+     \item Użytkownik może pominąć krok używając przycisku "Pomiń krok".
+   \end{enumerate}
+\end{enumerate}
+
+%% ------------------------ PU UTWORZENIE DRUŻYNY-
+\subsection{PU Utworzenie drużyny}
+
+\subsubsection{Warunki początkowe}
+Wywołanie przez zawodnika, który nie jest członkiem żadnej drużyny.
+
+\subsubsection{Warunki końcowe}
+Zapisanie informacji o nowej drużynie w regionie zawodnika. Odrzucenie zaproszeń zawodnika do innych drużyn. Zawodnik staje się członkiem nowo utworzonej drużyny oraz jej kapitanem. Nabycie dostępu do dodatkowych funkcjonalności związanych z rolą kapitana.
+
+\subsubsection{Przebieg}
+\begin{enumerate}
+  \item System wyświetla pierwszy krok kreatora drużyny - podstawowe dane.
+  \item Zawodnik wprowadza nazwę drużyny.
+  \begin{enumerate}[label=(\alph*)]
+     \item W przypadku nieprawidłowej wartości system niezwłocznie informuje o tym zawodnika.
+   \end{enumerate}
+  \item Zawodnik przechodzi do następnego kroku kreatora za pomocą przycisku "Dalej".
+  \begin{enumerate}[label=(\alph*)]
+     \item W przypadku nie wypełnienia wymaganego pola dotyczącego nazwy drużyny system informuje o tym zawodnika wyróżniając to pole. Powrót do kroku 2.
+   \end{enumerate}
+   
+    \item System wyświetla użytkownikowi opcjonalny krok formularza pozwalający na wgranie zdjęcia profilowego.
+ 
+  \begin{enumerate}[label=(\alph*)]
+     \item Użytkownik może wybrać zdjęcie oraz je przesłać.
+     \item Użytkownik może pominąć krok używając przycisku "Pomiń krok".
+   \end{enumerate}
+     
+  \item System wyświetla kolejny krok kreatora drużyny - wybór punktu macierzystego.
+  \item Użytkownik wybiera punkt macierzysty za pomocą \textbf{PU Wybór punktu macierzystego}. A następnie potwierdza wybór za pomocą przycisku "Dalej".
+  \item System informuje użytkownika o pomyślnym utworzeniu drużyny.
+  \item System wyświetla użytkownikowi opcjonalny krok formularza pozwalający na zaproszenie zawodników do drużyny.
+  
+  \begin{enumerate}[label=(\alph*)]
+     \item Użytkownik może zaprosić zawodników do drużyny - wywołanie \textbf{PU Wysłanie zaproszenia}.
+   \end{enumerate}
+ 
+\end{enumerate}
+
+
+\subsection{PU Wyszukiwanie rywali}
+
+\subsubsection{Warunki początkowe}
+Wywołanie przez kapitana, którego drużyna jest aktywna, czyli kwalifikuje się do rozgrywek. Wymogiem jest tutaj spełnienie przez drużynę warunku minimalnej liczby graczy dla danej dyscypliny.
+
+\subsubsection{Warunki końcowe}
+Prezentacja potencjalnych rywali wraz z wskaźnikami umożliwiającymi kapitanowi wnioskowanie na temat poszczególnych propozycji.
+
+\subsubsection{Przebieg}
+\begin{enumerate}
+  \item Wywołanie \textbf{PU Określenie preferencji}.
+  \item System na podstawie preferencji kapitana wyznacza oraz wyświetla kapitanowi listę drużyn kwalifikujących się do rozgrywek w kolejności uwarunkowanej stopniem dopasowania. Dodatkowo dla każdej propozycji system prezentuje wskaźniki pomocne w podjęciu decyzji - poziomy dopasowań poszczególnych kryteriów.
+  \item Kapitan przegląda propozycje rywali.
+  \begin{enumerate}[label=(\alph*)]
+     \item Kapitan może porównać dwie lub trzy drużyny - wywołanie \textbf{PU Porównanie rywali}.
+     \item Kapitan wnioskując na podstawie dostarczonych informacji może wybrać drużynę, której chciałby rzucić wyzwanie - wywołanie \textbf{PU Rzucenie wyzwania}.
+   \end{enumerate}
+   
+
+\end{enumerate}
+
+\subsection{PU Określenie preferencji}
+
+\subsubsection{Warunki początkowe}
+
+Wywołanie z \textbf{PU Wyszukiwanie rywali}.
+
+\subsubsection{Warunki końcowe}
+
+System otrzymuje informacje dotyczące preferencji kapitana odnośnie poszukiwanych rywali.
+
+\subsubsection{Przebieg}
+\begin{enumerate}
+  \item System wyświetla formularz deklaracji preferencji.
+  \item System wyświetla podstawowe instrukcje dotyczące działania funkcjonalności.
+  \item Kapitan za pomocą suwaków oraz kontrolek typu checkbox definiuje swoje preferencje odnośnie poszczególnych cech rywali.
+  \item Kapitan przesyła formularz za pomocą przycisku ``Szukaj``.
+  \item System uwzględnia przesłany formularz w dalszym przetwarzaniu. 
+\end{enumerate}
+
+
+\subsection{PU Rzucenie wyzwania}
+
+\subsubsection{Warunki początkowe}
+
+Wywołanie z \textbf{PU Wyszukiwanie rywali}. Drużyna rzucająca wyzwanie oraz wyzywana spełniają wymogi rozgrywek - są aktywne. Nie istnieje aktualne wyzwanie w toku pomiędzy tymi drużynami.
+
+\subsubsection{Warunki końcowe}
+
+Wyzwanie zostaje utworzone w systemie. Jest widoczne dla obydwu drużyn. Możliwe są negocjacje terminu oraz miejsca spotkania.
+
+\subsubsection{Przebieg}
+
+\begin{enumerate}
+  \item System wyświetla podstawowe instrukcje dotyczące funkcjonalności.
+  \item System wyświetla mapę, na której widoczne są punkty macierzyste drużyny kapitana oraz drużyny, której rzucane jest wyzwanie. Na mapie widoczne są również obiekty sportowe, dla których zostały utworzone oferty czasu i miejsca spotkania.
+  \item System wyświetla pustą pulę ofert wraz z przyciskiem umożliwiającym dodanie oferty.
+  \item Kapitan dodaje co najmniej jedną ofertę czasu i miejsca spotkania - wywołanie \textbf{PU Wprowadzenie oferty czasu i miejsca}.
+  \begin{enumerate}[label=(\alph*)]
+     \item Kapitan może anulować wprowadzone oferty - wywołanie \textbf{PU Anulacja oferty czasu i miejsca}.
+   \end{enumerate}
+  \item Gdy warunek istnienia co najmniej jednej oferty miejsca oraz czasu jest spełniony, system uaktywnia przycisk ``Rzuć wyzwanie``.
+  \item Kapitan rzuca wyzwanie używając przycisku ``Rzuć wyzwanie``.
+  \item System rejestruje wyzwanie w systemie, informuje użytkownika o sukcesie oraz wyświetla mu widok na którym widoczne jest utworzone wyzwanie.
+\end{enumerate}
+
+\subsection{PU Wprowadzenie oferty czasu i miejsca}
+
+\subsubsection{Warunki początkowe}
+
+Wywołanie w kontekście rzucanego wyzwania bądź wyzwania będącego w trakcie negocjacji.
+
+\subsubsection{Warunki końcowe}
+
+Dodanie nowej propozycji czasu i miejsca spotkania do puli dla konkretnego wyzwania.
+
+\subsubsection{Przebieg}
+
+
+\begin{enumerate}
+  \item System wyświetla mapę, na której widoczne są punkty macierzyste obydwu drużyn biorących udział w wyzwaniu oraz obiekty sportowe dla regionu, w którym istnieją drużyny.
+  \item System wyświetla odpowiedni formularz.
+  \item Kapitan wybiera datę spotkania korzystając z kalendarza. Możliwe do wyboru są jedynie daty w przyszłości.
+  \item Kapitan wybiera godzinę spotkania.
+  \item Kapitan wybiera miejsce spotkania wciskając wybrany znacznik obiektu sportowego na mapie.
+  \item Kapitan przesyła ofertę używając przycisku "Dodaj do puli".
+  \begin{enumerate}[label=(\alph*)]
+     \item Kapitan może również anulować wprowadzanie oferty za pomocą przycisku "Anuluj".
+   \end{enumerate}
+ \item System zapisuje nową ofertę oraz wyświetla kapitanowi zaktualizowaną pulę zawierającą nowo dodany element.
+\end{enumerate}
+
+\section{Wymagania niefunkcjonalne}
+
+Po za wymaganiami funkcjonalnymi, które opisują funkcje wykonywane przez system, zdefiniowane zostały również następujące ograniczenia odnośnie procesu implementacji systemu oraz jego działania:
+
+\begin{enumerate}
+
+\item Zastosowane technologie muszą być wspierane oraz posiadać dokładną dokumentację techniczną.
+
+\item Implementacja systemu musi przebiegać w sposób iteracyjny, z zastosowaniem systemu kontroli wersji.
+
+\item Kod powstały podczas implementacji systemu powinien być czytelny oraz zrozumiały. Fragmenty mogące budzić niejasności powinny być opisane za pomocą komentarzy.
+
+\item System powinien być szeroko dostępny. Powinien udostępniać swoje funkcje niezależnie od platformy z jakiej korzysta użytkownik. 
+
+\item Interfejs systemu powinien być intuicyjny oraz prosty w obsłudze.
+
+\item Operacje wykonywane przez system nie mogą trwać dłużej niż parę sekund. W przypadku dłuższych operacji system musi prezentować użytkownikowi ich postęp.
+
+\item System powinien informować użytkownika o rezultatach podejmowanych akcji - sukcesach oraz błędach.
 
 \end{enumerate}
 
 
-\begin{table}[H]
-\centering\small
-\caption{Wymagania funkcjonalne - konta użytkowników}
-\label{tab:szablon}
-\begin{tabularx}{\linewidth}{|p{.2\linewidth}|X|}\hline
-Nr. ident. & Opis \\ \hline\hline
-
-FR-USR-01 & Gość może założyć konto w systemie podając: adres email, hasło, imię, nazwisko oraz datę urodzenia. \\ \hline
-FR-USR-02 & Użytkownik może modyfikować wprowadzone przez siebie dane.  \\ \hline
-FR-USR-03 & Użytkownik może usunąć swoje konto.  \\ \hline
-
-\end{tabularx}
-\end{table}
-
-\subsubsection{Profile zawodników}
-
-
-\begin{table}[H]
-\centering\small
-\caption{Wymagania funkcjonalne - profile zawodników}
-\label{tab:szablon}
-\begin{tabularx}{\linewidth}{|p{.2\linewidth}|X|}\hline
-Nr. ident. & Opis \\ \hline\hline
-
-FR-PLR-01 & Użytkownik może utworzyć profil zawodnika. Użytkownik dokonuje wyboru regionu, wprowadza swój wzrost, deklaruje poziom umiejętności oraz częstość gry.   \\ \hline
-FR-PLR-02 & Użytkownik może przeglądać swój profil zawodnika.\\ \hline
-FR-PLR-03 & Użytkownik może zarządzać swoim profilem zawodnika. \\ \hline
-
-\end{tabularx}
-\end{table}
-
-\subsubsection{Dołączanie do drużyn}
-
-\begin{table}[H]
-\centering\small
-\caption{Wymagania funkcjonalne - dołączanie do drużyn}
-\label{tab:szablon}
-\begin{tabularx}{\linewidth}{|p{.2\linewidth}|X|}\hline
-Nr. ident. & Opis \\ \hline\hline
-
-FR-JOI-01 & Zawodnik nie będący w drużynie może przeglądać otrzymane zaproszenia do drużyn.\\ \hline
-
-FR-JOI-02 & Zawodnik nie będący w drużynie może zaakceptować otrzymane zaproszenie do drużyny.\\ \hline
-
-FR-JOI-03 & Zawodnik nie będący w drużynie może odrzucić otrzymane zaproszenie do drużyny.\\ \hline
-
-FR-JOI-04 & Zawodnik może opuścić drużynę, której jest członkiem, pod warunkiem, że nie jest jej kapitanem.\\ \hline
-
-\end{tabularx}
-\end{table}
-
-
-\subsubsection{Zarządzanie drużynami}
-
-\begin{table}[H]
-\centering\small
-\caption{Wymagania funkcjonalne - zarządzanie drużynami}
-\label{tab:szablon}
-\begin{tabularx}{\linewidth}{|p{.2\linewidth}|X|}\hline
-Nr. ident. & Opis \\ \hline\hline
-
-FR-TEM-01 & Zawodnik nie będący w drużynie może utworzyć nową drużynę. Zawodnik dokonuje wyboru regionu, wprowadza nazwę oraz wybiera punkt macierzysty.\\ \hline
-
-FR-TEM-02 & Kapitan może dostosować (przenieść) punkt macierzysty swojej drużyny.\\ \hline
-
-FR-TEM-03 & Kapitan może zaprosić do drużyny zawodnika będącego w tym samym regionie co drużyna, pod warunkiem, że nie jest on członkiem żadnej drużyny.\\ \hline
-
-FR-TEM-04 & Kapitan może usuwać zawodników swojej drużyny.\\ \hline
-
-FR-TEM-05 & Kapitan może usunąć swoją drużynę.\\ \hline
-
-FR-TEM-06 & Zawodnik może przeglądać profil swojej drużyny.\\ \hline
-
-\end{tabularx}
-\end{table}
-
-\subsubsection{Społeczność}
-
-
-\begin{table}[H]
-\centering\small
-\caption{Wymagania funkcjonalne - społeczność}
-\label{tab:szablon}
-\begin{tabularx}{\linewidth}{|p{.2\linewidth}|X|}\hline
-Nr. ident. & Opis \\ \hline\hline
-
-FR-SOC-01 & Użytkownik może przeglądać profile zawodników, drużyn oraz obiekty sportowe w różnych regionach.\\ \hline
-
-FR-SOC-02 & Administrator może dodawać nowe regiony podając ich skrótową nazwę, pełną nazwę oraz wybierając punkt centralny.\\ \hline
-
-
-\end{tabularx}
-\end{table}
-
-\subsubsection{Zarządzanie obiektami sportowymi}
-
-\begin{table}[H]
-\centering\small
-\caption{Wymagania funkcjonalne - zarządzanie obiektami sportowymi}
-\label{tab:szablon}
-\begin{tabularx}{\linewidth}{|p{.2\linewidth}|X|}\hline
-Nr. ident. & Opis \\ \hline\hline
-
-FR-FAC-01 & Użytkownik może przeglądać mapę z zaznaczonymi obiektami sportowymi w każdym z dostępnych regionów.\\ \hline
-
-FR-FAC-02 & Użytkownik może zgłaszać nowe obiekty sportowe. Użytkownik wskazuje położenie obiektu na mapie oraz wprowadza podstawowe dane takie jak: nazwa, adres, ilość miejsc do gry, nawierzchnia, oświetlenie oraz dodatkowy opis.\\ \hline
-
-FR-FAC-03 & Moderator może usuwać oraz edytować wprowadzone obiekty sportowe.\\ \hline
-
-\end{tabularx}
-\end{table}
-
-\subsubsection{Poszukiwanie rywali}
-
-\begin{table}[H]
-\centering\small
-\caption{Wymagania funkcjonalne - poszukiwanie rywali}
-\label{tab:szablon}
-\begin{tabularx}{\linewidth}{|p{.2\linewidth}|X|}\hline
-Nr. ident. & Opis \\ \hline\hline
-
-FR-SEA-01 & Kapitan aktywnej drużyny może wyszukiwać rywali. \\ \hline
-
-FR-SEA-02 & Kapitan aktywnej drużyny może porównać dwóch lub trzech potencjalnych rywali. \\ \hline
-
-\end{tabularx}
-\end{table}
-
-
-\subsubsection{Organizacja spotkań}
-
-\begin{table}[H]
-\centering\small
-\caption{Wymagania funkcjonalne - negocjacje}
-\label{tab:szablon}
-\begin{tabularx}{\linewidth}{|p{.2\linewidth}|X|}\hline
-Nr. ident. & Opis \\ \hline\hline
-
-FR-NEG-01 & Kapitan może rzucić wyzwanie innej drużynie  \\ \hline
-FR-NEG-02 & Kapitan może anulować wyzwania rzucone przez siebie oraz odrzucać wyzwania rzucone przez inne drużyny  \\ \hline
-FR-NEG-03 & Kapitan może odrzucać oferty miejsca i czasu spotkania rzucone przez przeciwników, dodawać oraz wycofywać swoje  \\ \hline
-FR-NEG-04 & Kapitan może zaakceptować ofertę miejsca i czasu spotkania rzuconą przez przeciwników. Proces negocjacji dobiega wtedy końca  \\ \hline
-
-\end{tabularx}
-\end{table}
-
-\begin{table}[H]
-\centering\small
-\caption{Wymagania funkcjonalne - wprowadzanie wyniku}
-\label{tab:szablon}
-\begin{tabularx}{\linewidth}{|p{.2\linewidth}|X|}\hline
-Nr. ident. & Opis \\ \hline\hline
-
-FR-RES-01 & Kapitan po spotkaniu może wprowadzić wynik spotkania - wskazać drużynę, która wygrała oraz ilości punktów drużyn  \\ \hline
-FR-RES-02 & Kapitan może potwierdzić wynik wprowadzony przez rywali lub go odrzucić w przypadku nieścisłości  \\ \hline
-FR-RES-03 & Kapitan może ocenić drużynę przeciwną wypełniając odpowiedni formularz \\ \hline
-
-\end{tabularx}
-\end{table}
-
 \section{Identyfikacja encji}
 
-Na podstawie wymagań dotyczących funkcjonowania systemu zidentyfikowane zostały encje.
+Na podstawie wymagań dotyczących funkcjonowania systemu zidentyfikowane zostały encje. Encje wraz ze swoimi atrybutami oraz powiązaniami zostały przedstawione w sposób graficzny na rysunku~\ref{fig:diagram-erd} za pomocą diagramu ERD.
 
-
+\begin{comment}
 \begin{table}[H]
 \centering\small
 \caption{Zestawienie encji wraz z ich opisami}
@@ -278,25 +313,36 @@ TeamReview & Wypełniony formularz oceny drużyny po zakończonym spotkaniu\\ \h
 
 \end{tabularx}
 \end{table}
+\end{comment}
 
-\begin{figure}[ht]
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\linewidth]{04-projekt/rys/erdpoziom.PNG}
+\caption{Diagram związków encji}
+\label{fig:diagram-erd}
+\end{figure}
+
+\begin{comment}
+\begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{04-projekt/rys/erd2.PNG}
 \caption{Diagram związków encji}
 \label{fig:diagram-erd}
 \end{figure}
+\end{comment}
 
-Encje wraz ze swoimi atrybutami oraz powiązaniami zostały przedstawione w sposób graficzny na rysunku~\ref{fig:diagram-erd} za pomocą diagramu ERD.
 
 
-Diagram stanów wyzwania??!!
+\section{Diagram stanów - Wyzwanie}
 
+Jedną z najważniejszych funkcjonalności systemu jest możliwość rzucania wyzwań innym drużynom. W celu ukazania możliwych stanów w jakim może znajdować się wyzwanie sporządzono diagram stanów. Diagram został przedstawiony na rysunku \ref{fig:diagram-stany-wyzwanie}. 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{04-projekt/rys/state1.PNG}
-\caption{Diagram zależności między grupami w systemie}
-\label{fig:diagram-trad-alg-opt}
+\includegraphics[width=0.8\linewidth]{04-projekt/rys/state1.PNG}
+\caption{Diagram możliwych stanów wyzwań}
+\label{fig:diagram-stany-wyzwanie}
 \end{figure}
 
 
