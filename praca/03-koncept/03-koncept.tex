@@ -7,8 +7,6 @@ Projekt koncepcyjny? Koncepcja systemu? Systemu NAZWA_WLASNA
 W niniejszym rozdziale zostanie przedstawiony koncept głównych funkcjonalności projektowanego systemu. Podczas pracy koncepcyjnej autor pracy miał na względzie główny cel systemu jakim jest zrzeszanie zawodników. Proponowane funkcjonalności mają umożliwić osiągnięcie tego celu. Tworząc koncept autor kierował się znajomością potrzeb grupy docelowej, której sam jest częścią, a niejednokrotnie swoje pomysły weryfikował z innymi zawodnikami.
 
 
-System został nazwany Team Challenge. Nazwa ta nawiązuje do głównej funkcjonalności systemu, czyli do wspierania rywalizacji pomiędzy drużynami poprzez rzucanie wyzwań.
-
   
 \section{Baza wiedzy}
 
@@ -57,7 +55,7 @@ Przytoczone kryteria powinny zostać uwzględnione w projektowanym mechanizmie w
 
 \subsection{Problem optymalizacji wielokryterialnej}
 
-Problem optymalizacji wielokryterialnej jest rozszerzeniem problemu optymalizacji jednokryterialnej, gdzie poszukiwana jest decyzja optymalna, ze zbioru możliwych decyzji na podstawie jednego kryterium. Problem ten sprowadza się do poszukiwania maksimum (bądź minimum) funkcji oceny danego kryterium. Jeżeli kryterium jest ilościowe, np. maksymalna prędkość samochodu, to podejmując decyzje o zakupie jedynie ze względu na to kryterium naturalnie wybierzemy samochód, który osiąga największą prędkość. 
+Problem optymalizacji wielokryterialnej jest rozszerzeniem problemu optymalizacji jednokryterialnej, gdzie poszukiwana jest decyzja optymalna, ze zbioru możliwych decyzji na podstawie jednego kryterium. Problem ten sprowadza się do poszukiwania maksimum (bądź minimum) funkcji oceny danego kryterium \cite{optwielok}. Jeżeli kryterium jest ilościowe, np. maksymalna prędkość samochodu, to podejmując decyzje o zakupie jedynie ze względu na to kryterium naturalnie wybierzemy samochód, który osiąga największą prędkość. 
 
 Często jednak podjecie decyzji może być uwarunkowane większą liczbą czynników, na przykład, w przypadku samochodu może to być jego cena, koszt utrzymania, czy czynniki nie ilościowe takie jak jego kolor (w zależności od preferencji kupca). Podejmując decyzje należy rozpatrzyć wiele kryteriów oraz relacje miedzy nimi. Decyzja, która jest optymalna ze względu na jedno z kryteriów, nie musi być optymalna ze względu na pozostałe - z reguły tak nie jest.
 
@@ -68,7 +66,7 @@ Często jednak podjecie decyzji może być uwarunkowane większą liczbą czynni
 \label{fig:diagram-trad-alg-opt}
 \end{figure}
 
-Tradycyjnym sposobem rozwiązania problemu jest w pierwszej kolejności znormalizowanie wartości kryteriów do przedziału wartości <0,1>, a następnie dokonanie wyboru korzystając z wybranej funkcji agregującej [?]. Ogólny schemat został przedstawiony na rysunku ~\ref{fig:diagram-trad-alg-opt}
+Tradycyjnym sposobem rozwiązania problemu jest w pierwszej kolejności znormalizowanie wartości kryteriów do przedziału wartości <0,1>, a następnie dokonanie wyboru korzystając z wybranej funkcji agregującej \cite{optwielok}. Ogólny schemat został przedstawiony na rysunku ~\ref{fig:diagram-trad-alg-opt}
 
 Problem podobnej natury występuje w projektowanym systemie. Poszukiwanie rywali do gry można sprowadzić do poszukiwania najlepszych decyzji wyboru drużyny spośród kwalifikujących się drużyn zdefiniowanych w systemie. Przykładowe kryteria wpływające na wartość funkcji oceny dla poszczególnych decyzji (rywali) zostały zdefiniowane w poprzednim podrozdziale.
 

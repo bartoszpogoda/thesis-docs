@@ -1,11 +1,10 @@
 \chapter{Implementacja i działanie systemu Team Challenge}
 
+Lorem ipsum
+
 \section{Środowisko implementacji}
 
 Implementacja systemu odbywała się przy użyciu komputera wyposażonego w 8GB pamięci fizycznej oraz cztero-rdzeniowy procesor Intel Core i5-6300HQ (taktowanie 2.30GHz). Sprzęt o przytoczonych parametrach okazał się w pełni wystarczający dla przebiegu implementacji oraz lokalnego uruchamiania serwera aplikacji. Systemem operacyjnym używanym przy implementacji był Windows w wersji 10 Education. Wszystkie użyte programy i narzędzia dobrze współpracują z tym systemem.
-
-\subsection{Wykorzystane narzędzia}
-
 
 \begin{table}[H]
 \centering\small
@@ -205,7 +204,7 @@ W systemie zostały wyszczególnione dwa główne rodzaje kryteriów - numeryczn
 
 Dodatkowo wyszczególniono generyczną klasę, która opakowuje dowolne kryterium dodając informację o znormalizowanej wartości liczbowej. 
 
-Zastosowaną hierarchię klas przedstawiono na rysunku ref. Rozbudowa funkcjonalności o nowe kryteria sprowadza się do utworzenia dodatkowej implementacji w odpowiednim miejscu hierarchii.  
+Zastosowaną hierarchię klas przedstawiono na rysunku \ref{fig:criterion-classes}. Rozbudowa funkcjonalności o nowe kryteria sprowadza się do utworzenia dodatkowej implementacji w odpowiednim miejscu hierarchii.  
 
 \begin{figure}[H]
 \centering
@@ -214,11 +213,11 @@ Zastosowaną hierarchię klas przedstawiono na rysunku ref. Rozbudowa funkcjonal
 \label{fig:criterion-classes}
 \end{figure}
 
-Kryteria dla poszczególnych decyzji generowane są na podstawie zgromadzonych danych o drużynach, zawodnikach oraz wynikach spotkań. Przykładową metodę przedstawiono na listingu XX. 
+Kryteria dla poszczególnych decyzji generowane są na podstawie zgromadzonych danych o drużynach, zawodnikach oraz wynikach spotkań. Przykładową metodę przedstawiono na listingu \ref{list:age-crit-gen}. 
 
 
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[label=list:age-crit-gen, caption=Przykładowa rejestracja kontrolera, basicstyle=\footnotesize\ttfamily]
+\begin{lstlisting}[label=list:age-crit-gen, caption=Generacja kryterium różnicy wieku między dwoma drużynami, basicstyle=\footnotesize\ttfamily]
 public AgeCriterion ageCriteria(Team hostTeam, Team otherTeam) {
   double averageAgeHostTeam = hostTeam.getPlayers().stream()
                 .mapToDouble(playerService::getAge).average().orElse(0);
@@ -238,8 +237,9 @@ public AgeCriterion ageCriteria(Team hostTeam, Team otherTeam) {
 
  Normalizacja poszczególnych kryteriów przebiega przy użyciu różnych funkcji, dopasowanych do charakteru danych. Przykładem uzasadniającym konieczność zastosowania takiej modyfikacji może być porównanie dwóch kryteriów: odległości drużyn oraz średniego wieku zawodników. O ile kryterium odległości może być normalizowane w pełni liniowo, o tyle dla różnicy wieku taka metoda normalizacji jest błędna. Różnica wieku między dwoma zawodnikami, którzy mają 15 oraz 20 lat jest znacznie bardziej istotna aniżeli różnica między zawodnikami w wieku 30 oraz 35 lat - nie można tutaj zastosować operatora w pełni liniowego. Dodatkowo w domenie problemu wyróżniono kryteria nieliczbowe - cechy drużyny, które mogą mieć duży wpływ na jakość dopasowania, np. zadeklarowana chęć ponownej gry z daną drużyną.  
  
+ \begin{comment}
 O metodach normalizacji - LinearDecay itp. 
- 
+ \end{comment}
  
 \begin{figure}[H]
 \centering
@@ -250,7 +250,7 @@ O metodach normalizacji - LinearDecay itp.
 
 \subsubsection{Metoda ważonych kryteriów}
 
-Metoda ważonych kryteriów polega na opisaniu funkcji oceny decyzji jako sumy ważonej ocen poszczególnych kryteriów [?]. Konieczne jest przyporządkowanie wagi dla każdego z kryteriów. Ocena poszczególnych decyzji obliczana jest według wzoru: 
+Metoda ważonych kryteriów polega na opisaniu funkcji oceny decyzji jako sumy ważonej ocen poszczególnych kryteriów \cite{analizawielok}. Konieczne jest przyporządkowanie wagi dla każdego z kryteriów. Ocena poszczególnych decyzji obliczana jest według wzoru: 
 
 \begin{equation}\label{eq:mwk}
 F(x)=\sum_{i=1}^{k}w_{i}f_{i}(x)
@@ -292,45 +292,97 @@ public class WeightedCriteriaAggregator {
 
 \subsection{Modularność}
 
-Modularyzacja + podział na komponenty
+Podobnie jak aplikacja serwerowa, aplikacja kliencka została zrealizowana w architekturze ograniczającej odpowiedzialność poszczególnych komponentów. W technologii Angular modularność uzyskuję się poprzez podział na komponenty oraz moduły, które je agregują w zbiory [X]. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+Istotnym wzorcem jaki został zastosowany w projekcie jest dodatkowy podział komponentów na komponenty prezentacyjne oraz kontenery. Komponenty prezentacyjne zajmują się jedynie wyświetlaniem danych przekazanych im na wejściach oraz pobieraniem danych od użytkownika i przekazywaniem ich na wyjścia. Kontenery posiadają większy zakres odpowiedzialności - znają stan aplikacji oraz mogą na niego wpływać. Kontenery używają komponentów prezentacyjnych do interakcji z użytkownikiem [X]. Zastosowanie takiego podziału usprawniło rozwój aplikacji oraz pozwoliło na używanie raz zaimplementowanych komponentów prezentacyjnych w różnych miejscach aplikacji.
+
+\begin{comment}
+Angular Docs:  Architecture overview
+https://angular.io/guide/architecture
+
+https://blog.angular-university.io/angular-2-smart-components-vs-presentation-components-whats-the-difference-when-to-use-each-and-why/
+Angular Architecture - Smart Components vs Presentational Components
+18 JUNE 2018
+Angular Unversity
+\end{comment}
+
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{06-implementacja/rys/modularyzacja.PNG}
-\caption{Hierarchia klas: normalizacja}
+\caption{Widok wyników poszukiwania rywali: Podział na komponenty}
 \label{fig:criterion-classes}
 \end{figure}
 
 
 \subsection{Stan aplikacji}
 
-Stan aplikacji
-Zarządzanie stanem aplikacji Obsługa stanu aplikacji 
+Jednym z wyzwań podczas implementacji aplikacji działających w przeglądarce jest zarządzanie ich stanem. Tradycyjnym podejściem dla aplikacji w technologii Angular jest przetrzymywanie danych w komponentach oraz serwisach. Sposób ten działa bez zarzutów dla bardzo małych aplikacji, jednak w miarę rozwoju pojawiają się problemy takie jak: przekazywanie danych pomiędzy komponentami, które nie zależą bezpośrednio od siebie oraz problemy z synchronizacją danych. Drugi problem dotyczy sytuacji, w której dwa komponenty korzystają z tych samych obiektów, a w pewnym momencie okazuje się, że obiekty te są różne. Ciężko jest stwierdzić, który komponent zawiera referencje do obiektu prawdziwego - aktualnego. Rozwiązaniem opisanych problemów jest wdrożenie do aplikacji koncepcji \textit{Store}. Podejście to polega na przetrzymywaniu stanu aplikacji w jednym obiekcie. Eliminuje to problem konfliktów, w aplikacji występuje tylko jedno źródło prawdy (ang. \textit{Source of truth}). Korzystanie przez różne komponenty z tych samych danych również staje się proste ze względu na przetrzymywanie ich w centralnym miejscu dostępnym z każdego miejsca aplikacji.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+Warto również dodać, że stan aplikacji jest obiektem niemodyfikowalnym. Jedynym sposobem na zmianę stanu jest zmiana referencji na nowy obiekt. W opisywanej architekturze zajmują się tym specjalne funkcje redukujące. Funkcje te na podstawie zgłaszanych akcji dokonują aktualizacji stanu. Akcje są zgłaszane w momencie zdarzeń wygenerowanych przez użytkownika, zewnętrzne systemy bądź wewnętrznie w aplikacji. Jedną z głównych zalet takiego sposobu zmian stanu jest zwiększenie wydajności aplikacji w technologii \textit{Angular}. Komponenty mogą korzystać z bardzo wydajnego trybu odświeżania, który aktualizuje widok jedynie w momencie zmiany referencji podanych na jego wejścia - co ma miejsce przy aktualizacjach w zastosowanej architekturze. Kolejną równie ważną zaletą jest znaczne ułatwienie wykrywania błędów oraz ich przyczyn. Istnieją narzędzia deweloperskie pozwalające na śledzenie stanu  oraz jego zmian podczas działania aplikacji. Przykładowy podgląd części stanu w formie drzewa przedstawiono na rysunku \ref{fig:state}. Narzędzia umożliwiają również podgląd obiektu stanu w formacie \textit{JSON}. Przykładową sekwencję akcji generowanych oraz obsługiwanych przy logowaniu do aplikacji ukazano na rysunku \ref{fig:actions}.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{06-implementacja/rys/modularyzacja.PNG}
-\caption{Hierarchia klas: normalizacja}
-\label{fig:criterion-classes}
+\includegraphics[width=\linewidth]{06-implementacja/rys/state-after.PNG}
+\caption{Przykładowy fragment drzewa stanu aplikacji}
+\label{fig:state}
 \end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{06-implementacja/rys/actions.PNG}
+\caption{Przykładowa sekwencja akcji przy logowaniu do aplikacji}
+\label{fig:actions}
+\end{figure}
+
 
 \subsection{Formularze}
 
+Wiele funkcjonalności Team Challenge opiera się na pobraniu danych od użytkowników. W technologii \textit{Angular} wyróżnia się dwa główne sposoby budowy formularzy - sterowane znacznikami \textit{HTML} oraz reaktywne (ang. \textit{reactive}). Podczas implementacji systemu użyto formularzy reaktywnych. Są one zalecane przez twórców szkieletu \textit{Angular} ze względu na większą skalowalność oraz możliwości wielokrotnego użytku. 
+
+Komponenty wizualne takie jak przyciski, suwaki oraz pola tekstowe zostały dostarczone przez bibliotekę \textit{NgZorro}. 
+
+
+\begin{comment}
+
+
+https://angular.io/guide/forms-overview
+
+kontrolki od zorro, step forms, store
 formularze, Walidacja formularzy, pare screenow, odowlanie do instrukcji uzytkownika w zalaczniku
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+\end{comment} 
+
+
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{06-implementacja/rys/modularyzacja.PNG}
-\caption{Hierarchia klas: normalizacja}
-\label{fig:criterion-classes}
+\includegraphics[width=\linewidth]{06-implementacja/rys/form1.PNG}
+\caption{Formularz wprowadzania obiektu sportowego - Krok pierwszy}
+\label{fig:sample-form}
 \end{figure}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{06-implementacja/rys/form2.PNG}
+\caption{Formularz wprowadzania obiektu sportowego - Krok drugi}
+\label{fig:sample-form}
+\end{figure}
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{06-implementacja/rys/form3.PNG}
+\caption{Formularz wprowadzania obiektu sportowego - Krok trzeci}
+\label{fig:sample-form}
+\end{figure}
+
 
 \section{Bezpieczeństwo}
 
