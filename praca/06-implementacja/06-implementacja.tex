@@ -1,6 +1,6 @@
-\chapter{Implementacja i działanie systemu Team Challenge}
+\chapter{Implementacja systemu Team Challenge}
 
-Lorem ipsum
+W niniejszym rozdziale został opisany przebieg procesu implementacji, jak również sposób w jaki przy użyciu dostępnych technologii zrealizowano funkcjonalności systemu. 
 
 \section{Środowisko implementacji}
 
@@ -189,7 +189,7 @@ Pełna specyfikacja REST API została przedstawiona w załączniku X.
 
 \subsection{Algorytm poszukiwania rywali}
 
-Algorytm poszukiwania rywali został zaimplementowany w oparciu o zagadnienie optymalizacji wielokryterialnej, które zostało przybliżone w trzecim rozdziale niniejszej pracy. Podczas prac nad algorytmem uwzględniono domenę problemu oraz charakter danych, na jakich będzie on operował. W związku z tym tradycyjny schemat oceny decyzji został rozszerzony, co zostało opisane w dalszej części tego rozdziału. Rysunek~\ref{fig:diagram-alg-ext} przedstawia uproszczony schemat działania algorytmu zrealizowanego w systemie.
+Algorytm poszukiwania rywali został zaimplementowany w oparciu o zagadnienie optymalizacji wielokryterialnej, które zostało przybliżone w rozdziale opisującym koncepcję. Podczas prac nad algorytmem uwzględniono domenę problemu oraz charakter danych, na jakich będzie on operował. W związku z tym tradycyjny schemat oceny decyzji został rozszerzony, co zostało opisane w dalszej części tego rozdziału. Rysunek~\ref{fig:diagram-alg-ext} przedstawia uproszczony schemat działania algorytmu zrealizowanego w systemie.
 
 \begin{figure}[H]
 \centering
@@ -332,7 +332,7 @@ Warto również dodać, że stan aplikacji jest obiektem niemodyfikowalnym. Jedy
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\linewidth]{06-implementacja/rys/actions.PNG}
+\includegraphics[width=0.45\linewidth]{06-implementacja/rys/actions.PNG}
 \caption{Przykładowa sekwencja akcji przy logowaniu do aplikacji}
 \label{fig:actions}
 \end{figure}
@@ -340,10 +340,9 @@ Warto również dodać, że stan aplikacji jest obiektem niemodyfikowalnym. Jedy
 
 \subsection{Formularze}
 
-Wiele funkcjonalności Team Challenge opiera się na pobraniu danych od użytkowników. W technologii \textit{Angular} wyróżnia się dwa główne sposoby budowy formularzy - sterowane znacznikami \textit{HTML} oraz reaktywne (ang. \textit{reactive}). Podczas implementacji systemu użyto formularzy reaktywnych. Są one zalecane przez twórców szkieletu \textit{Angular} ze względu na większą skalowalność oraz możliwości wielokrotnego użytku. 
+Wiele funkcjonalności Team Challenge opiera się na pobraniu danych od użytkowników. W technologii \textit{Angular} wyróżnia się dwa główne sposoby budowy formularzy - sterowane znacznikami \textit{HTML} oraz reaktywne (ang. \textit{reactive}). Podczas implementacji systemu użyto formularzy reaktywnych. Są one zalecane przez twórców szkieletu \textit{Angular} ze względu na większą skalowalność oraz możliwości wielokrotnego użytku. W celu sprawdzania poprawności wprowadzonych danych już po stronie aplikacji klienckiej wykorzystano wsparcie wbudowane w module \textit{ReactiveFormsModule}. Przykładowy rezultat walidacji przedstawiono na rysunku \ref{fig:sample-form2}.
 
-Komponenty wizualne takie jak przyciski, suwaki oraz pola tekstowe zostały dostarczone przez bibliotekę \textit{NgZorro}. 
-
+Komponenty wizualne takie jak przyciski, suwaki, pola wyboru oraz pola tekstowe zostały dostarczone przez bibliotekę \textit{NgZorro}.  Elementy formularza wykorzystujące mapy zostały zbudowane przy użyciu modułu \textit{@ngui/map} oraz \textit{Google Maps API}. Przykładowy rezultat został przedstawiony na rysunku \ref{fig:sample-form1}.
 
 \begin{comment}
 
@@ -361,7 +360,7 @@ formularze, Walidacja formularzy, pare screenow, odowlanie do instrukcji uzytkow
 \centering
 \includegraphics[width=\linewidth]{06-implementacja/rys/form1.PNG}
 \caption{Formularz wprowadzania obiektu sportowego - Krok pierwszy}
-\label{fig:sample-form}
+\label{fig:sample-form1}
 \end{figure}
 
 
@@ -370,18 +369,27 @@ formularze, Walidacja formularzy, pare screenow, odowlanie do instrukcji uzytkow
 \centering
 \includegraphics[width=\linewidth]{06-implementacja/rys/form2.PNG}
 \caption{Formularz wprowadzania obiektu sportowego - Krok drugi}
-\label{fig:sample-form}
+\label{fig:sample-form2}
 \end{figure}
 
 
+Większość z utworzonych formularzy podzielono na mniejsze etapy - kroki. Podejście takie pozwala na ograniczenie ilości elementów, nad którymi użytkownik musi się skupić w danym momencie. Cały formularz wydaje się lżejszy i bardziej atrakcyjny dla użytkownika. W celu graficznej prezentacji aktualnego kroku formularza oraz postępu użyto komponentu \textit{nz-steps} dostarczonego przez \textit{NgZorro}. Ostatni krok formularza wprowadzania obiektu sportowego przedstawiono na rysunku \ref{fig:sample-form3}.
 
+\begin{comment}
+https://www.ventureharbour.com/multi-step-lead-forms-get-300-conversions/
+Why Multi-Step Lead Forms Get up to 300% More Conversions
+Written by Marcus Taylor
+April 12, 2018
+\end{comment}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{06-implementacja/rys/form3.PNG}
 \caption{Formularz wprowadzania obiektu sportowego - Krok trzeci}
-\label{fig:sample-form}
+\label{fig:sample-form3}
 \end{figure}
+
+Walidacja poprawności danych w systemie została zrealizowana zarówno po stronie serwerowej, jak i klienckiej. Wypełniane przez użytkownika formularze są na bieżąco sprawdzane pod względem poprawności. Użytkownik jest niezwłocznie informowany o wszelkich błędach jak np. braku wypełnienia wymaganych pól lub błędów w formacie. Powyżej opisane funkcjonalności zostały zrealizowane za pomocą komponentów wchodzących w skład modułu \textit{ReactiveFormsModule}.
 
 
 \section{Bezpieczeństwo}
@@ -390,13 +398,14 @@ Szczególną uwagę poświęcono implementacji zabezpieczeń systemu oraz zgroma
 
 Hasła użytkowników przechowywane są w formie zaszyfrowanej za pomocą funkcji skrótu BCrypt. Spring Security dostarcza klasę implementującą ten algorytm - BCryptPasswordEncoder. Główną zaletą takiego sposobu szyfrowania jest generowanie losowego ciągu znaków, tak zwanej soli, który dodatkowo wzmacnia bezpieczeństwo hasła. Zastosowanie soli przy hashowaniu znacznie utrudnia złamanie hasła przez ataki przy użyciu tęczowych tabel. W przypadku algorytmu bcrypt wygenerowana sól jest przechowywana razem z zaszyfrowanym hasłem w bazie danych. W przypadku prób logowania jest ona wyciągana z bazy oraz używana do przetworzenia podanego hasła w celu porównania zgodności.
 
+Autoryzacja zapytań została zaimplementowana w oparciu o technologię JWT. Formularz logowania przesyłany jest z aplikacji klienckiej do aplikacji serwerowej, gdzie jest przechwytywany przez kontroler TokenResource. W przypadku pomyślnej autentykacji generowany jest token JWT zawierający podstawowe informacje o użytkowniku, jego rolach oraz dacie wygenerowania oraz wygaśnięcia tokenu. Token jest podpisany za pomocą algorytmu HS256 specjalnym kluczem, co praktycznie uniemożliwia jego modyfikację bądź podrobienie bez znajomości klucza. Wygenerowany token wraca do klienta, gdzie jest zapisywany w stanie aplikacji oraz dekodowany w celu odczytania otrzymanych informacji. Token jest używany do autoryzacji dalszych zapytań do aplikacji serwerowej, w tym celu dodawany jest jako nagłówek każdego żądania HTTP. Serwer otrzymując żądania w pierwszej kolejności sprawdza obecność nagłówka oraz weryfikuje zawarty w nim token pod względem poprawności, aktualności oraz praw dostępów do konkretnych zasobów. 
 
-Autoryzacja zapytań (JWT)
+Ze względu na ograniczony czas ważności tokenu aplikacja kliencka zmuszona jest co pewien czas odnawiać token. W tym celu wysyła zapytanie na specjalny adres \textit{POST /api/token/renewal}. Serwer w przypadku pomyślnej weryfikacji aktualnego tokenu generuje nowy o nowej dacie ważności. W przypadku niepomyślnej weryfikacji serwer zwraca kod błędu, w wyniku czego następuje wylogowanie użytkownika z informacją o wygaśnięciu sesji i konieczności nowego logowania.
+
+\section{Testowanie}
+
+Część funkcjonalności systemu została pokryta testami jednostkowymi, które uruchamiane były każdorazowo po wprowadzonych zmianach w kodzie. Testy te pomagały wykrywać problemy związane z działaniem pojedynczych komponentów w izolacji. Weryfikacja poprawności działania całości systemu z punktu widzenia użytkownika końcowego, czyli testy e2e (ang. \textit{end-to-end}) wykonywana była w sposób manualny przez autora pracy.
+
+Podczas trwania implementacji aplikacji klienckiej pojawiła się potrzeba przeprowadzenie testów intuicyjności elementów interfejsu. Wybrane scenariusze interakcji z użytkownikiem zostały zweryfikowane poprzez dwukrotnie przeprowadzone badania moderowane. W wyniku przeprowadzonych testów zidentyfikowano elementy nieintuicyjne oraz wprowadzono usprawnienia. Przeprowadzone testy zostały szerzej opisane w rozdziale 8.
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\linewidth]{06-implementacja/rys/modularyzacja.PNG}
-\caption{Hierarchia klas: normalizacja}
-\label{fig:criterion-classes}
-\end{figure}

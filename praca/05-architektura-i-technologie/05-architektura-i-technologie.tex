@@ -6,7 +6,7 @@ Istotnym czynnikiem mającym wpływ na wybór technologii oraz wzorców architek
 
 \section{Architektura systemu}
 
-Ze względu na potrzebę szerokiej dostępności platformy została ona zrealizowana jako system webowy w architekturze klient - serwer. Interfejsem użytkownika końcowego jest aplikacja kliencka typu SPA - Single Page Application uruchamiana w przeglądarce internetowej. Aplikacja ta komunikuje się z API wystawionym przez aplikację backendową umieszczoną na serwerze w sieci.  Aplikacja backendowa z kolei komunikuje się z bazą danych w celu odczytu oraz zapisu informacji. 
+Ze względu na potrzebę szerokiej dostępności platformy została ona zrealizowana jako system webowy w architekturze klient - serwer. Interfejsem użytkownika końcowego jest aplikacja kliencka typu SPA (ang. \textit{Single Page Application}) uruchamiana w przeglądarce internetowej. Aplikacja ta komunikuje się z API (ang. \textit{Application Programming Interface}) aplikacji serwerowej za pomocą zapytań protokołu HTTP (ang. \textit{Hypertext Transfer Protocol}).  Aplikacja serwerowa z kolei komunikuje się z bazą danych w celu odczytu oraz zapisu informacji za pomocą interfejsu JDBC (ang. \textit{Java DataBase Connectivity}). 
 
 \begin{figure}[ht]
 \centering
@@ -18,10 +18,10 @@ Ze względu na potrzebę szerokiej dostępności platformy została ona zrealizo
 Elementy otoczone linią kreskowaną na diagramie nie są przedmiotem tej pracy, jednak podkreślają uniwersalność API oraz wskazują możliwości rozwojowe oraz integracyjne systemu.
 
 \subsection{RESTful API}
-API wystawiane przez część serwerową zostało zaprojektowane w oparciu styl architektoniczny REST, który zakłada komunikację klient-serwer z uwzględnieniem następujących zasad: 
+API wystawiane przez część serwerową zostało zaprojektowane w oparciu styl architektoniczny REST (ang. \textit{Representational State Transfer}), który zakłada komunikację klient-serwer z uwzględnieniem następujących zasad: 
 \begin{itemize}
 \item użycie podstawowych metody protokołu HTTP czyli - GET, PUT, POST oraz DELETE,
-\item identyfikacja zasobów poprzez URL,
+\item identyfikacja zasobów poprzez URL (ang. \textit{Uniform Resource Locator}),
 \item komunikacja bezstanowa (brak sesji).
 \end{itemize}
 
@@ -29,10 +29,7 @@ Użycie podstawowych metod protokołu HTTP pozytywnie wpływa na czytelność or
 
 \section{Stos technologiczny}
 
-
-\subsection{Java}
-
-Wersje tez
+Bla bla
 
 \subsection{Spring Boot}
 

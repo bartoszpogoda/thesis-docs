@@ -289,7 +289,7 @@
 %\def\printchaptertitle##1{\fonttitle \space \thechapter.\space ##1} 
 
 %\usepackage{ltcaption}
-% The ltcaption package supports \CaptionLabelFont & \CaptionTextFont introduced by the NTG document classes
+% Thezata ltcaption package supports \CaptionLabelFont & \CaptionTextFont introduced by the NTG document classes
 %\renewcommand\CaptionLabelFont{\small}
 %\renewcommand\CaptionTextFont{\small}
 
@@ -332,6 +332,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                  
 %% Definicje stopek i nagłówków
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                  
+%% Definicje stopek i nagłówków
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                  
 \addtopsmarks{headings}{%
 \nouppercaseheads % added at the beginning
@@ -363,8 +366,6 @@
 \makeevenhead{empty}{}{}{} % remove left header
 \makeevenfoot{empty}{}{}{}
 \makeoddfoot{empty}{}{}{}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Definicja strony tytułowej 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -545,10 +546,10 @@ Oznacza to, że wszystkie zawarte  nim treści można kopiować i  wykorzystywa�
 
 
 
-\newpage
-\mbox{}\pdfbookmark[0]{Spis tabel}{spisTabel.1}
-%\addcontentsline{toc}{chapter}{Spis tabel}
-\listoftables*
+%\newpage
+%\mbox{}\pdfbookmark[0]{Spis tabel}{spisTabel.1}
+%%\addcontentsline{toc}{chapter}{Spis tabel}
+%\listoftables*
 
 %\include{skroty} %skróty można sobie pominąć
 \chapterstyle{default}
@@ -559,6 +560,7 @@ Oznacza to, że wszystkie zawarte  nim treści można kopiować i  wykorzystywa�
 \include{05-architektura-i-technologie/05-architektura-i-technologie}
 \include{06-implementacja/06-implementacja}
 \include{07-walidacja/07-walidacja}
+\include{065-dzialanie/065-dzialanie}	
 \include{08-perspektywy-rozwoju/08-perspektywy-rozwoju}
 \include{09-podsumowanie/09-podsumowanie}
 
@@ -571,7 +573,6 @@ Oznacza to, że wszystkie zawarte  nim treści można kopiować i  wykorzystywa�
 %       (w tym przypadku jest to "dokumentacja.bib")
 \bibliography{bibliografia}
 \appendix
-\include{dodatekA}
 \include{dodatekB}
 
 \chapterstyle{noNumbered}

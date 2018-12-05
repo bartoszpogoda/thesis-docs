@@ -4,13 +4,13 @@
 Projekt koncepcyjny? Koncepcja systemu? Systemu NAZWA_WLASNA
 \end{comment}
 
-W niniejszym rozdziale zostanie przedstawiony koncept głównych funkcjonalności projektowanego systemu. Podczas pracy koncepcyjnej autor pracy miał na względzie główny cel systemu jakim jest zrzeszanie zawodników. Proponowane funkcjonalności mają umożliwić osiągnięcie tego celu. Tworząc koncept autor kierował się znajomością potrzeb grupy docelowej, której sam jest częścią, a niejednokrotnie swoje pomysły weryfikował z innymi zawodnikami.
+W niniejszym rozdziale został przedstawiony koncept głównych funkcjonalności projektowanego systemu. Podczas pracy koncepcyjnej autor pracy miał na względzie główny cel systemu jakim jest zrzeszanie zawodników. Proponowane funkcjonalności mają umożliwić osiągnięcie tego celu. Tworząc koncept autor kierował się znajomością potrzeb grupy docelowej, której sam jest częścią, a niejednokrotnie swoje pomysły weryfikował z innymi zawodnikami.
 
 
   
 \section{Baza wiedzy}
 
-W celu umożliwienia zrzeszania zawodników sportów zespołowych konieczne jest przechowywanie w systemie bazy wiedzy na temat zawodników, drużyn oraz obiektów sportowych. W poniższych sekcjach zostaną przybliżone główne założenia dotyczące przechowywania poszczególnych danych.
+W celu umożliwienia zrzeszania zawodników sportów zespołowych konieczne jest przechowywanie w systemie bazy wiedzy na temat zawodników, drużyn oraz obiektów sportowych. W~poniższych sekcjach zostaną przybliżone główne założenia dotyczące przechowywania poszczególnych danych.
   
 \subsection{Baza zawodników}
 
@@ -30,7 +30,7 @@ Dostęp do kluczowych funkcjonalności takich jak szukanie przeciwników oraz rz
 
 \subsection{Baza obiektów sportowych}
 
-Mając na uwadze docelową grupę docelową projektowanego systemu jaką są zawodnicy grający amatorsko - system powinien dostarczać bazę obiektów ogólnodostępnych, a przede wszystkim nie wymagających wkładu finansowego. Głównym konceptem w tym zakresie jest umożliwienie zawodnikom zgłaszania oraz weryfikacji obiektów. 
+Mając na uwadze docelową grupę docelową projektowanego systemu jaką są zawodnicy grający amatorsko - system powinien dostarczać bazę obiektów ogólnodostępnych, a przede wszystkim nie wymagających wkładu finansowego. Głównym konceptem w tym zakresie jest umożliwienie zawodnikom zgłaszania obiektów. 
 
 \section{Wspomaganie poszukiwania rywali}
 
@@ -43,8 +43,8 @@ Podstawowym kryterium dopasowywania drużyn będzie maksymalizacja satysfakcji z
 
 \begin{itemize}
 \item{przybliżony wiek zawodników,}
-\item{przybliżony poziom umiejętności zawodników,}
-\item{przybliżona forma zawodników,}
+\item{przybliżony poziom umiejętności oraz forma zawodników,}
+\item{mała odległość między punktami macierzystymi drużyn,}
 \item{zachowanie fair-play drużyny przeciwnej,}
 \item{dobre wspomnienia po poprzednich rozgrywkach.}
 \end{itemize}
@@ -108,7 +108,7 @@ Kolejną bazową funkcjonalnością systemu jest wspieranie przebiegu umawiania 
 
 \subsection{Negocjacja terminu oraz miejsca spotkania}
 
-Kapitanowie drużyn, komunikując się ze swoimi zawodnikami, mogą dodawać do puli ofert swoje propozycje składające się z daty, godziny oraz miejsca spotkania. Miejscem spotkania może być dowolny obiekt sportowy zgłoszony w tym samym regionie co drużyny. System mógłby jednak proponować obiekty położone blisko punktów macierzystych obydwu drużyn. Negocjacje spotkania kończą się w momencie gdy jeden z kapitanów zaakceptuje propozycję drużyny przeciwnej. Termin oraz miejsce zawarte w zaakceptowanej ofercie stają się planowanym terminem oraz miejscem spotkania, a wyzwanie otrzymuje status zaakceptowanego.
+Kapitanowie drużyn, komunikując się ze swoimi zawodnikami, mogą dodawać do puli ofert swoje propozycje składające się z daty, godziny oraz miejsca spotkania. Miejscem spotkania może być dowolny obiekt sportowy zgłoszony w tym samym regionie co drużyny.  Negocjacje spotkania kończą się w momencie gdy jeden z kapitanów zaakceptuje propozycję drużyny przeciwnej. Termin oraz miejsce zawarte w zaakceptowanej ofercie stają się planowanym terminem oraz miejscem spotkania, a wyzwanie otrzymuje status zaakceptowanego.
 
 \begin{figure}[ht]
 \centering
@@ -119,7 +119,7 @@ Kapitanowie drużyn, komunikując się ze swoimi zawodnikami, mogą dodawać do 
 
 \subsection{Wyniki spotkań}
 
-Wyzwanie uznaje się za zakończone gdy nastąpi wprowadzenie do systemu jego wyniku. Wynik może zostać wprowadzony przez dowolną z drużyn biorących udział w wyzwaniu. Wprowadzony wynik powinien zostać poddany weryfikacji przez drugiego z kapitanów, który może go potwierdzić, bądź w przypadku niezgodności, odrzucić. Na wynik powinny składać się informacje takie jak: ilość punktów zdobytych przez poszczególne drużyny. W przypadku gdy są to dwie różne liczby wyzwanie kończy się zwycięstwem drużyny, która zdobyła ich więcej. W przeciwnym razie wynikiem wyzwania jest remis.
+Wyzwanie uznaje się za zakończone gdy nastąpi wprowadzenie do systemu jego wyniku. Wynik może zostać wprowadzony przez dowolną z drużyn biorących udział w wyzwaniu. Wprowadzony wynik powinien zostać poddany weryfikacji przez drugiego z kapitanów, który może go potwierdzić, bądź w przypadku niezgodności, odrzucić. Wynikiem jest ilość punktów zdobytych przez poszczególne drużyny. W przypadku gdy są to dwie różne liczby wyzwanie kończy się zwycięstwem drużyny, która zdobyła ich więcej. W przeciwnym razie wynikiem wyzwania jest remis.
 
 \subsection{Ocena drużyn}
 
