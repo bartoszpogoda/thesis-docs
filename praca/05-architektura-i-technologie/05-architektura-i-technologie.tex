@@ -29,39 +29,38 @@ Użycie podstawowych metod protokołu HTTP pozytywnie wpływa na czytelność or
 
 \section{Stos technologiczny}
 
-Bla bla
+W poniższych sekcjach zostały przybliżone zastosowane technologie. 
 
 \subsection{Spring Boot}
 
-Aplikacja backendowa została zaimplementowana w języku Java (w wersji 1.8) z użyciem frameworka Spring Boot (w wersji 2.0.3). Technologie te zostały wybrane ze względu na następujące czynniki:
+Aplikacja serwerowa została zaimplementowana w języku Java (w wersji 1.8) \cite{java} z użyciem szkieletu Spring Boot (w wersji 2.0.3) \cite{springboot}. Technologie te zostały wybrane ze względu na następujące czynniki:
  \begin{itemize}
 \item rozwiązania open source,
 \item duże grono użytkowników oraz baza materiałów w sieci,
 \item dobra dokumentacja,
 \item duża ilość dostępnych modułów Springa np. do komunikacji z bazami danych,
-\item chęć poszerzenia wiedzy na temat tych technologii.
+\item chęć rozwoju autora w zakresie tych technologii.
 \end{itemize}
-
-\subsection{Swagger}
-
-Swagger został wykorzystany do dostarczenia dokumentacji RESTowego API bla bla.
 
 \subsection{JWT}
 
-Technologia Json Web Token została wybrana jako sposób realizacji autoryzacji zapytań do API systemu. JWT jest technologią autoryzacji bezstanowej, przez co bardzo często jest używane do zabezpieczania końcówek REST'owych.
+Technologia JWT (ang.\textit{Json Web Token}) została wybrana jako sposób realizacji autoryzacji zapytań do API systemu. JWT jest technologią autoryzacji bezstanowej, przez co bardzo dobrze współgra z architekturą aplikacji REST-owych.
 
 \subsection{MySQL} 
 
-Relacyjna baza danych została wybrana ze względu na przewidywaną dużą ilość powiązań między encjami w systemie. MySQL od firmy Oracle jest darmowym, bezpiecznym oraz wydajnym systemem zarządzania bazą danych.  Istotnym uzasadnieniem wyboru tej technologii jest również bardzo dobra integracja z frameworkiem Spring.
+Relacyjna baza danych została wybrana ze względu na dużą ilość powiązań między encjami w systemie. MySQL od firmy Oracle jest darmowym, bezpiecznym oraz wydajnym systemem zarządzania bazą danych.  Istotnym uzasadnieniem wyboru tej technologii jest również bardzo dobra integracja ze szkieletem Spring.
 
 \subsection{Angular}
 
-Główną technologią wykorzystywaną po stronie front endu będzie framework do tworzenia SPA rozwijany przez Google - Angular (w wersji 6.1.0). Framework ten ułatwia budowę skalowalnych i szybkich aplikacji z bogatym interfejsem użytkownika. 
+Główną technologią wykorzystywaną po stronie front endu jest szkielet do tworzenia SPA (ang. \textit{Single Page Application}) rozwijany przez firmę Google - Angular (w wersji 6.1.0) \cite{angular}. Szkielet ten ułatwia budowę skalowalnych i szybkich aplikacji z bogatym interfejsem użytkownika. Dużą zaletą Angular-a jest wsparcie dla programowania w języku TypeScript, co usprawnia rozwój aplikacji poprzez kontrolę typów.
 
-W celu usprawnienia procesu rozwoju aplikacji zostanie wykorzystana biblioteka ngrx (w wersji 6.1.0), wspomagająca zarządzanie stanem aplikacji. Wykorzystanie tej biblioteki znacznie ułatwia analizę działania aplikacji oraz diagnozowanie błędów.
+Dodatkowo w celu usprawnienia procesu rozwoju aplikacji została wykorzystana biblioteka ngrx (w wersji 6.1.0), wspomagająca zarządzanie stanem aplikacji. Wykorzystanie tej biblioteki znacznie ułatwiło analizę działania aplikacji oraz diagnozowanie błędów.
 
-A jakby tak opisac czemu nie react? Ze angular bardzo dobrze sprwadza sie przy duzej ilosci formularzy, react bardziej rendering framework?
 
 \subsection{AntDesign - NgZorro}
 
+NgZorro zostało użyte jako główna biblioteka dostarczająca szeroką gamę komponentów graficznych do aplikacji w technologii Angular \cite{ngzorro}. Wybór padł na to rozwiązanie ze względu na duże wsparcie dla przeglądarek oraz bardzo dobrą dokumentację z przykładami. Użyte komponenty również cechują się atrakcyjnym wyglądem, który ma duży wpływ na odbiór systemu przez użytkownika.
+
 \subsection{Heroku}
+
+Zaimplementowane aplikacje serwerowa oraz kliencka zostały wdrożone na platformę Heroku. Rozwiązanie to zostało wybrane ze względu na darmowe plany użytkowania, jak również doświadczenie autora pracy w zakresie tej platformy. 
