@@ -1,12 +1,24 @@
 \chapter{Podsumowanie}
 
-Przeprowadzenie projektu składającego się z etapu koncepcyjnego, następnie projektowego, implementacyjnego oraz weryfikacyjnego, pozwoliło na uzyskanie zadowalającego efektu końcowego, w postaci zaawansowanego prototypu systemu zrzeszającego sportowców. Podczas poszczególnych etapów projektu korzystano ze sprawdzonych standardów, technologii oraz metodyk działania. Miało to duży wpływ na sprawny rozwój projektu. W przypadku napotkanych problemów oraz niejasności bardzo przydatna okazywała się literatura w postaci dokumentacji oraz artykułów naukowych.
+Przeprowadzenie projektu pozwoliło na uzyskanie efektu końcowego, w postaci zaawansowanego prototypu systemu pozwalającego na budowę społeczności sportowców, poszukiwanie dobrze dopasowanych rywali oraz umawianie meczy. 
+
+Praca nad projektem została podzielona na etapy: analizy problemu, analizy istniejących rozwiązań, pracy koncepcyjnej, wykonania projektu technicznego, implementacji rozwiązania, weryfikacji rozwiązania oraz jego walidacji. Ostatnie trzy etapy odbywały się jednocześnie.
+
+Podczas poszczególnych etapów projektu korzystano ze sprawdzonych standardów, technologii oraz metodyk działania. Miało to duży wpływ na sprawny rozwój projektu. W przypadku napotkanych problemów oraz niejasności bardzo przydatna okazywała się literatura w postaci dokumentacji oraz artykułów naukowych.
+
+Aplikacja została zrealizowania z myślą o rozwoju. Część serwerowa umożliwia dynamiczne wprowadzanie nowych dyscyplin sportowych oraz regionów działania. Poszczególne komponenty systemu zostały zaimplementowane zgodnie z zasadą OCP (ang. \textit{Open/closed principle}). Wytworzone oprogramowanie jest otwarte na rozszerzenia wynikające ze zmieniających się oczekiwań grupy docelowej. Przykładem może być zaimplementowany algorytm optymalizacji wielokryterialnej, którego struktura klas pozwala na łatwe wprowadzanie nowych kryteriów. Duży wpływ na możliwości rozwojowe ma również rozdzielenie części klienckiej oraz serwerowej. Aplikacja serwerowa została zrealizowana jako niezależny oraz kompletny komponent, który realizuje całą logikę biznesową systemu udostępniając interfejs w postaci REST API. Po stronie serwerowej nie istnieją żadne powiązania do części klienckiej. Serwer jest gotowy na obsługę różnych klientów bez względu na platformę, jedynym wymogiem jest komunikacja za pomocą protokołu HTTP.
+
+%Aplikacja serwerowa została zrealizowana jako niezależny oraz kompletny komponent realizujący całą logikę biznesową 
+
+%Logika biznesowa aplikacji realizowana jest w całości po stronie % serwerowej, jedna całość brak powiązań łatwa integracja 
+
+% Front end
 
 Przeprowadzone testy użyteczności rozwiązania pozwoliły na zidentyfikowanie problemów związanych z intuicyjnością interfejsu oraz wprowadzenie usprawnień. Konfrontacja systemu we wczesnym etapie rozwoju z potencjalnymi użytkownikami pozwoliła również na lepsze zrozumienie ich oczekiwań oraz przystosowanie kierunku rozwoju platformy.
 
-Uzyskany produkt końcowy może stanowić wartą rozpatrzenia alternatywę dla istniejących rozwiązań. Głównym elementem wyróżniającym system Team Challenge spośród innych dostępnych propozycji jest nowatorskie wspomaganie poszukiwania rywali, które zostało zrealizowane w oparciu o zagadnienie optymalizacji wielokryterialnej. Algorytm został zrealizowany w sposób w pełni otwarty na rozszerzenia, co umożliwia jego profilowanie z uwzględnieniem rzeczywistych potrzeb grupy docelowej.
+Uzyskany produkt końcowy może stanowić wartą rozpatrzenia alternatywę dla istniejących rozwiązań. Głównym elementem wyróżniającym system \textit{Team Challenge} spośród innych dostępnych propozycji jest nowatorskie wspomaganie poszukiwania rywali, które zostało zrealizowane w oparciu o zagadnienie optymalizacji wielokryterialnej. System dostarcza wiele informacji dotyczących proponowanych rywali, co wspomaga wybór dobrze dopasowanych przeciwników, a ostatecznie prowadzi do satysfakcjonujących spotkań. % Algorytm został zrealizowany w sposób w pełni otwarty na rozszerzenia, co umożliwia jego profilowanie z uwzględnieniem rzeczywistych potrzeb grupy docelowej.
 
-Praca nad platformą była dla autora niniejszej pracy ciekawym doświadczeniem. Wynikało to z dużego zainteresowanie tematem sportów zespołowych oraz chęcią rozwoju w obrębie systemów internetowych. Rozwiązywanie napotkanych problemów pozwoliło na poszerzenie wiedzy na temat wykorzystywanych technologii oraz wiedzy ogólnej dotyczącej inżynierii systemów informatycznych.
+Praca nad platformą była dla autora niniejszej pracy ciekawym doświadczeniem. Wynikało to z dużego zainteresowania tematem sportów zespołowych oraz chęcią rozwoju w obrębie systemów internetowych. Rozwiązywanie napotkanych problemów pozwoliło na poszerzenie wiedzy na temat wykorzystywanych technologii oraz wiedzy ogólnej dotyczącej inżynierii systemów informatycznych.
 
 
 

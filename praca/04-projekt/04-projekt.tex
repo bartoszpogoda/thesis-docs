@@ -2,7 +2,7 @@
 
 W niniejszym rozdziale przedstawiony został projekt systemu sporządzony na podstawie ogólnej koncepcji opisanej w poprzedniej części. W ramach projektu wydzielono role aktorów na stronie, następnie sporządzono specyfikację wymagań funkcjonalnych oraz niefunkcjonalnych. Na podstawie wymagań funkcjonalnych zostały zamodelowane encje występujące w systemie, co zostało zademonstrowane na diagramie związków encji. W ostatniej części rozdziału przedstawiono diagram stanów dla rzucanego wyzwania.
 
-Diagramy przypadków użycia, związków encji oraz stanów zostały sporządzone przy użyciu narzędzia Visual Paradigm w wersji 15.1. Diagram zależności między grupami w systemie uzyskano przy pomocy internetowego narzędzia draw.io.
+Diagramy przypadków użycia, związków encji oraz stanów zostały sporządzone przy użyciu narzędzia \textit{Visual Paradigm} w wersji 15.1. Diagram zależności między grupami w systemie uzyskano przy pomocy internetowego narzędzia \textit{draw.io}.
 
 \section{Role w systemie}
 
@@ -30,49 +30,53 @@ W systemie zostały wyróżnione następujące role.
 \centering
 \includegraphics[width=0.5\linewidth]{04-projekt/rys/roles.PNG}
 \caption{Diagram zależności między grupami w systemie}
-\label{fig:diagram-trad-alg-opt}
+\label{fig:diagram-groups}
 \end{figure}
 
 
-\section{Wymagania funkcjonalne}
+\section{Diagramy przypadków użycia}
 
 Wymagania funkcjonalne zostały zdefiniowane, aby w jasny sposób opisać oczekiwania wobec systemu oraz jego zakres odpowiedzialności. Dokładne definiowanie wymagań pozwala na zidentyfikowanie możliwych błędów koncepcyjnych jeszcze przed rozpoczęciem implementacji \cite{requirements}. Specyfikacja wymagań za pomocą przypadków użycia w sposób czytelny przedstawia możliwe interakcje poszczególnych aktorów z systemem \cite{usecase}.
 
-W poniższych sekcjach przedstawiono diagramy przypadków użycia. W celu poprawienia czytelności, przypadki użycia dla niektórych aktorów zostały przedstawione na oddzielnych diagramach. Dodatkowo dla wybranych spośród najbardziej istotnych przypadków zostały sporządzone szczegółowe opisy.
+Poniżej przedstawiono diagramy przypadków użycia. W celu poprawienia czytelności, przypadki użycia dla niektórych aktorów zostały przedstawione na oddzielnych diagramach. 
 
 
-\subsection{Diagramy przypadków użycia}
+% \subsection{Diagramy przypadków użycia}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{04-projekt/rys/usecase1.PNG}
 \caption{Diagram przypadków użycia - gość oraz użytkownik}
-\label{fig:diagram-trad-alg-opt}
+\label{fig:diagram-uc-1}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{04-projekt/rys/usecase2.PNG}
 \caption{Diagram przypadków użycia - zawodnik}
-\label{fig:diagram-trad-alg-opt}
+\label{fig:diagram-uc-2}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{04-projekt/rys/usecase4.PNG}
 \caption{Diagram przypadków użycia - moderator oraz administrator}
-\label{fig:diagram-trad-alg-opt}
+\label{fig:diagram-uc-3}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{04-projekt/rys/usecase3.PNG}
+\includegraphics[width=\linewidth]{04-projekt/rys/usecase3.png}
 \caption{Diagram przypadków użycia - kapitan}
-\label{fig:diagram-trad-alg-opt}
+\label{fig:diagram-uc-4}
 \end{figure}
 
+\section{Szczegółowe opisy przypadków użycia}
+
+Dla wybranych spośród najbardziej istotnych przypadków użycia zostały sporządzone szczegółowe opisy zawierające warunki początkowe, końcowe oraz przebieg.
+
 %% ------------------------ PU REJESTRACJA -------------
-\subsection{PU Rejestracja}
+\subsection*{PU Rejestracja}
 \subsubsection{Warunki początkowe}
 Wywołanie przez gościa.
 \subsubsection{Warunki końcowe}
@@ -91,7 +95,7 @@ Konto utworzone w systemie. Możliwe zalogowanie za pomocą podanego adresu e-ma
 
 
 %% ------------------------ PU UTWORZENIE PROFILU ZAWODNIKA -
-\subsection{PU Utworzenie profilu zawodnika}
+\subsection*{PU Utworzenie profilu zawodnika}
 
 \subsubsection{Warunki początkowe}
 Wywołanie przez użytkownika nie posiadającego profilu zawodnika.
@@ -127,7 +131,7 @@ Zapisanie informacji o nowym zawodniku. Użytkownik staje się zawodnikiem oraz 
 \end{enumerate}
 
 %% ------------------------ PU UTWORZENIE DRUŻYNY-
-\subsection{PU Utworzenie drużyny}
+\subsection*{PU Utworzenie drużyny}
 
 \subsubsection{Warunki początkowe}
 Wywołanie przez zawodnika, który nie jest członkiem żadnej drużyny.
@@ -166,7 +170,7 @@ Zapisanie informacji o nowej drużynie w regionie zawodnika. Odrzucenie zaprosze
 \end{enumerate}
 
 
-\subsection{PU Wyszukiwanie rywali}
+\subsection*{PU Wyszukiwanie rywali}
 
 \subsubsection{Warunki początkowe}
 Wywołanie przez kapitana, którego drużyna jest aktywna, czyli kwalifikuje się do rozgrywek. Wymogiem jest tutaj spełnienie przez drużynę warunku minimalnej liczby graczy dla danej dyscypliny.
@@ -187,7 +191,7 @@ Prezentacja potencjalnych rywali wraz z wskaźnikami umożliwiającymi kapitanow
 
 \end{enumerate}
 
-\subsection{PU Określenie preferencji}
+\subsection*{PU Określenie preferencji}
 
 \subsubsection{Warunki początkowe}
 
@@ -201,13 +205,13 @@ System otrzymuje informacje dotyczące preferencji kapitana odnośnie poszukiwan
 \begin{enumerate}
   \item System wyświetla formularz deklaracji preferencji.
   \item System wyświetla podstawowe instrukcje dotyczące działania funkcjonalności.
-  \item Kapitan za pomocą suwaków oraz kontrolek typu checkbox definiuje swoje preferencje odnośnie poszczególnych cech rywali.
+  \item Kapitan za pomocą suwaków oraz kontrolek typu \textit{checkbox} definiuje swoje preferencje odnośnie poszczególnych cech rywali.
   \item Kapitan przesyła formularz za pomocą przycisku ``Szukaj``.
   \item System uwzględnia przesłany formularz w dalszym przetwarzaniu. 
 \end{enumerate}
 
 
-\subsection{PU Rzucenie wyzwania}
+\subsection*{PU Rzucenie wyzwania}
 
 \subsubsection{Warunki początkowe}
 
@@ -232,7 +236,7 @@ Wyzwanie zostaje utworzone w systemie. Jest widoczne dla obydwu drużyn. Możliw
   \item System rejestruje wyzwanie w systemie, informuje użytkownika o sukcesie oraz wyświetla mu widok na którym widoczne jest utworzone wyzwanie.
 \end{enumerate}
 
-\subsection{PU Wprowadzenie oferty czasu i miejsca}
+\subsection*{PU Wprowadzenie oferty czasu i miejsca}
 
 \subsubsection{Warunki początkowe}
 
@@ -264,13 +268,13 @@ Po za wymaganiami funkcjonalnymi, które opisują funkcje wykonywane przez syste
 
 \begin{enumerate}
 
-\item Zastosowane technologie muszą być wspierane oraz posiadać dokładną dokumentację techniczną.
+\item Zastosowane technologie muszą posiadać dokładną dokumentację techniczną.
 
 \item Implementacja systemu musi przebiegać w sposób iteracyjny, z zastosowaniem systemu kontroli wersji.
 
 \item Kod powstały podczas implementacji systemu powinien być czytelny oraz zrozumiały. Fragmenty mogące budzić niejasności powinny być opisane za pomocą komentarzy.
 
-\item System powinien być szeroko dostępny. Powinien udostępniać swoje funkcje niezależnie od platformy z jakiej korzysta użytkownik. 
+\item System powinien być szeroko dostępny. Powinien udostępniać swoje funkcje użytkownikom korzystających z różnych platform wyposażonych w przeglądarkę internetową. 
 
 \item Interfejs systemu powinien być intuicyjny oraz prosty w obsłudze.
 

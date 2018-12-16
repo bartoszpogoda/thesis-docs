@@ -1,10 +1,10 @@
-\chapter{Implementacja systemu Team Challenge}
+\chapter{Implementacja systemu Team~Challenge}
 
-W niniejszym rozdziale został opisany przebieg procesu implementacji, jak również sposób w jaki przy użyciu dostępnych technologii zrealizowano funkcjonalności systemu. 
+W niniejszym rozdziale został opisany przebieg procesu implementacji, jak również sposób w~jaki przy użyciu dostępnych technologii zrealizowano funkcjonalności systemu. 
 
 \section{Środowisko implementacji}
 
-Implementacja systemu odbywała się przy użyciu komputera wyposażonego w 8GB pamięci fizycznej oraz cztero-rdzeniowy procesor Intel Core i5-6300HQ (taktowanie 2.30GHz). Sprzęt o przytoczonych parametrach okazał się w pełni wystarczający dla przebiegu implementacji oraz lokalnego uruchamiania serwera aplikacji. Systemem operacyjnym używanym przy implementacji był Windows w wersji 10 Education. Wszystkie użyte programy i narzędzia dobrze współpracują z tym systemem.
+Implementacja systemu odbywała się przy użyciu komputera wyposażonego w 8GB pamięci fizycznej oraz cztero-rdzeniowy procesor \textit{Intel Core i5-6300HQ} (taktowanie 2.30GHz). Sprzęt o~przytoczonych parametrach okazał się w pełni wystarczający dla przebiegu implementacji oraz lokalnego uruchamiania serwera aplikacji. Systemem operacyjnym używanym przy implementacji był \textit{Windows} w wersji \textit{10 Education}. Wszystkie użyte programy i narzędzia dobrze współpracują z tym systemem.
 
 \begin{table}[H]
 \centering\small
@@ -30,10 +30,10 @@ Git & 2.18.0 & - & Kontrola wersji \\ \hline
 
 \subsection{Struktura projektu}
 
-Podstawowy szkielet projektu został utworzony przy użyciu Spring Initializr. Jako narzędzie służące do zarządzania zależnościami oraz budowy projektu wybrany został Apache Maven. 
+Podstawowy szkielet projektu został utworzony przy użyciu \textit{Spring Initializr}. Jako narzędzie służące do zarządzania zależnościami oraz budowy projektu wybrany został \textit{Apache Maven}. 
 
 \begin{comment}
-W tabeli zostały przedstawione wykorzystane moduły Springa oraz inne biblioteki. 
+W tabeli zostały przedstawione wykorzystane moduły \textit{Spring-a} oraz inne biblioteki. 
 \end{comment}
 
   Klasy tworzące aplikację serwerową zostały podzielone na pakiety pod względem tematycznym, co zaprezentowano na rysunku~\ref{fig:packages}. Podział taki pozwala na utrzymanie płaskiej struktury katalogów, a w związku z tym umożliwia szybkie odnajdywanie pożądanych plików.
@@ -48,7 +48,7 @@ W tabeli zostały przedstawione wykorzystane moduły Springa oraz inne bibliotek
 
 \subsection{Architektura wielowarstwowa}
 
-Podczas projektowania architektury aplikacji ważne jest aby była ona przejrzysta oraz otwarta na rozszerzanie. Jedną z cech, którą powinny posiadać komponenty dobrze zaprojektowanego oprogramowania zorientowanego obiektowo jest ograniczenie odpowiedzialności. Jedną z metod rozdzielania odpowiedzialności jest wyszczególnienie w projekcie warstw komponentów. Aplikacja serwerowa będąca przedmiotem niniejszej pracy została podzielona na warstwy zgodnie ze standardami zdefiniowanymi dla szkieletu Spring. Wyszczególnione warstwy wraz z kierunkami komunikacji zostały przedstawione na rysunku~\ref{fig:app-layers}.
+Podczas projektowania architektury aplikacji ważne jest aby była ona przejrzysta oraz otwarta na rozszerzanie. Jedną z cech, którą powinny posiadać komponenty dobrze zaprojektowanego oprogramowania zorientowanego obiektowo jest ograniczenie odpowiedzialności. Jedną z metod rozdzielania odpowiedzialności jest wyszczególnienie w projekcie warstw komponentów. Aplikacja serwerowa będąca przedmiotem niniejszej pracy została podzielona na warstwy zgodnie ze standardami zdefiniowanymi dla szkieletu \textit{Spring}. Wyszczególnione warstwy wraz z kierunkami komunikacji zostały przedstawione na rysunku~\ref{fig:app-layers}.
 
 
 \begin{comment}
@@ -70,9 +70,10 @@ https://www.petrikainulainen.net/software-development/design/understanding-sprin
 
 \subsection{Warstwa repozytoriów}
 
-Repozytoria w frameworku Spring stanowią mechanizm dostępu do danych. Warstwa ta jest abstrakcją ukrywającą przed programistą szczegóły komunikacji z bazą danych takie jak: nawiązywanie oraz utrzymywanie połączenia, konstrukcja i wykonywanie zapytań, mapowanie wyników. Deklaracja fizycznych powiązań między aplikacją a bazą danych odbywa się za pomocą adnotacji. Na listingu~\ref{list:entity} przedstawiono powiązanie encji Team z fizyczną tabelą o nazwie Teams oraz mapowania przykładowych kolumn.
+Repozytoria w szkielecie \textit{Spring} stanowią mechanizm dostępu do danych. Warstwa ta jest abstrakcją ukrywającą przed programistą szczegóły komunikacji z bazą danych takie jak: nawiązywanie oraz utrzymywanie połączenia, konstrukcja i wykonywanie zapytań, mapowanie wyników. Deklaracja fizycznych powiązań między aplikacją a bazą danych odbywa się za pomocą adnotacji. We fragmencie kodu~\ref{list:entity} przedstawiono powiązanie encji \textit{Team} z fizyczną tabelą o nazwie \textit{Teams} oraz mapowania przykładowych kolumn.
 
-\begin{lstlisting}[label=list:entity, caption=Fragment przykładowej encji, basicstyle=\footnotesize\ttfamily]
+\renewcommand{\lstlistingname}{Fragment kodu}
+\begin{lstlisting}[label=list:entity, caption=Fragment deklaracji klasy encyjnej Team, basicstyle=\footnotesize\ttfamily]
 @Entity
 @Table(name = "Teams")
 @Data
@@ -95,9 +96,9 @@ public class Team {
 }
 \end{lstlisting}
 
-Dostęp do danych zapewniają repozytoria, czyli interfejsy oznaczone adnotacją @Repository. Wygodne jest rozszerzanie dostarczonego przez moduł Spring Data interfejsu CrudRepository, który definiuje podstawowe metody dostępu takie jak dodawanie, czytanie, modyfikacja oraz usuwanie encji. Pozostałe metody potrzebne do realizacji logiki biznesowej można definiować poprzez tworzenie metod o nazwach specyfikujących ich działanie. Fizyczne zapytania do bazy danych wyznaczane są na podstawie nazwy metody. Przykładową definicję repozytorium przedstawiono na listingu~\ref{list:repository}.
+Dostęp do danych zapewniają repozytoria, czyli interfejsy oznaczone adnotacją \textit{@Repository}. Wygodne jest rozszerzanie dostarczonego przez moduł \textit{Spring Data} interfejsu \textit{CrudRepository}, który definiuje podstawowe metody dostępu takie jak dodawanie, czytanie, modyfikacja oraz usuwanie encji. Pozostałe metody potrzebne do realizacji logiki biznesowej można definiować poprzez tworzenie metod o nazwach specyfikujących ich działanie. Fizyczne zapytania do bazy danych wyznaczane są na podstawie nazwy metody. Przykładową definicję repozytorium przedstawiono we fragmencie kodu~\ref{list:repository}.
 
-\begin{lstlisting}[label=list:repository, caption=Definicja przykładowego repozytorium, basicstyle=\footnotesize\ttfamily]
+\begin{lstlisting}[label=list:repository, caption=Definicja repozytorium TeamRepository, basicstyle=\footnotesize\ttfamily]
 @Repository
 public interface TeamRepository 
 extends CrudRepository<Team, String>, JpaSpecificationExecutor<Team> {
@@ -109,19 +110,19 @@ extends CrudRepository<Team, String>, JpaSpecificationExecutor<Team> {
 }
 \end{lstlisting}
 
-Dostarczenie interfejsu repozytorium rozszerzającego JpaSpecificationExecutor pozwala na wykonywanie bardziej zaawansowanych zapytań. Mechanizm ten został zastosowany przy tworzeniu zapytań, gdzie lista predykatów była ustalana w zależności od parametrów zapytania HTTP w sposób dynamiczny. Do budowy kwerend użyto klas Specification oraz Predicate pochodzących z modułu Sring Data JPA.
+Dostarczenie interfejsu repozytorium rozszerzającego \textit{JpaSpecificationExecutor} pozwala na wykonywanie bardziej zaawansowanych zapytań. Mechanizm ten został zastosowany przy tworzeniu zapytań, gdzie lista predykatów była ustalana w zależności od parametrów zapytania HTTP w sposób dynamiczny. Do budowy kwerend użyto klas \textit{Specification} oraz \textit{Predicate} pochodzących z modułu \textit{Sring Data JPA}.
 
 
 \subsection{Warstwa serwisów}
 
-Podstawowym zadaniem serwisów jest przetwarzanie danych zgodnie z regułami biznesowymi. W zaimplementowanym systemie na poziomie serwisów również sprawdzane są prawa dostępu do zasobów. W Springu serwisy oznaczane są adnotacje @Service. Framework sam zajmuje się tworzeniem instancji serwisów, które mogą być użyte w pozostałych komponentach systemu. Przykładowy serwis został przedstawiony na listingu~\ref{list:service}.
+Podstawowym zadaniem serwisów jest przetwarzanie danych zgodnie z regułami biznesowymi. W zaimplementowanym systemie na poziomie serwisów również sprawdzane są prawa dostępu do zasobów. W \textit{Spring-u} serwisy oznaczane są adnotacją \textit{@Service}. Szkielet sam zajmuje się tworzeniem instancji serwisów, które mogą być użyte w pozostałych komponentach systemu. Przykład realizacji logiki biznesowej w postaci ustawiania punktów macierzystych drużyn został przedstawiony we fragmencie kodu~\ref{list:service}.
 
 \begin{comment}
 Możę o wstrzykiwaniu zależności tutaj.
 \end{comment}
 
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[label=list:service, caption=Fragment przykładowego serwisu, basicstyle=\footnotesize\ttfamily]
+\begin{lstlisting}[label=list:service, caption=Fragment serwisu TeamService, basicstyle=\footnotesize\ttfamily]
 
 @Service
 public class TeamService {
@@ -155,12 +156,12 @@ public class TeamService {
 
 \subsection{Warstwa zasobów}
 
-Warstwa zasobów jest szczególna, z tego względu, że stanowi interfejs sytemu dla świata zewnętrznego. W ramach tej warstwy działa dostarczony przez szkielet Spring Dispatcher Servlet. Jest to komponent obsługujący żądania HTTP przychodzące do aplikacji. W ramach obsługi żądania są one przekazywane do konkretnych "kontrolerów", wybranych na podstawie URL żądania. Listing~\ref{list:resource}. przedstawia rejestracje kontrolera za pomocą adnotacji @RestController oraz @RequestMapping. Dispatcher Servlet w przypadku tak skonfigurowanej klasy będzie kierował zapytania o adresie /teams do kontrolera TeamResource. Zapytanie /teams/4  zostanie przekazane konkretnie do metody getTeam z argumentem wywołania równym 4.
+Warstwa zasobów jest szczególna, z tego względu, że stanowi interfejs sytemu dla świata zewnętrznego. W ramach tej warstwy działa dostarczony przez szkielet \textit{Spring} \textit{Dispatcher Servlet}. Jest to komponent obsługujący żądania HTTP przychodzące do aplikacji. W ramach obsługi żądania są one przekazywane do konkretnych "kontrolerów", wybranych na podstawie URL żądania. Fragment kodu~\ref{list:resource}. przedstawia rejestracje kontrolera za pomocą adnotacji \textit{@RestController} oraz \textit{@RequestMapping}. \textit{Dispatcher Servlet} w przypadku tak skonfigurowanej klasy będzie kierował zapytania o adresie \textit{/teams} do kontrolera \textit{TeamResource}. Zapytanie \textit{/teams/4}  zostanie przekazane konkretnie do metody \textit{getTeam} z argumentem wywołania równym 4.
 
 Na poziomie warstwy zasobów odbywa się również walidacja przychodzących danych.
 
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[label=list:resource, caption=Przykładowa rejestracja kontrolera, basicstyle=\footnotesize\ttfamily]
+\begin{lstlisting}[label=list:resource, caption=Fragment kontrolera TeamResource, basicstyle=\footnotesize\ttfamily]
 
 @RestController
 @RequestMapping("/teams")
@@ -185,7 +186,7 @@ public class TeamResource {
 \end{lstlisting}
 \end{minipage}
 
-Pełna dokumentacja REST API znajduje się na stronie \textit{https://team-challenge-api.herokuapp.com/swagger-ui.html}.   
+% Pełna dokumentacja REST API znajduje się na stronie \textit{https://team-challenge-api.herokuapp.com/swagger-ui.html}.   
 
 \subsection{Algorytm poszukiwania rywali}
 
@@ -200,16 +201,16 @@ Algorytm poszukiwania rywali został zaimplementowany w oparciu o zagadnienie op
 
 \subsubsection{Kryteria}
 
-W systemie zostały wyszczególnione dwa główne rodzaje kryteriów - numeryczne oraz logiczne. Kryteria numeryczne obejmują kryteria, które da się zmierzyć i wyrazić w postaci liczbowej. Uwzględniono tutaj takie kryteria jak: różnica wieku, różnica umiejętności oraz odległość między drużynami. Kryteria logiczne wyrażają dodatkowe wskaźniki, które mają wpływ na dobre dopasowanie drużyn, jednak nie są policzalne.  Kryteriom tym przypisane są wartości logiczne, które oznaczają czy dane kryterium zostało spełnione. Przykładowo wartość logiczna kryterium dotyczącego poziomu fair play będzie ustawiona jeżeli średnia ocen fair play potencjalnych rywali jest większa lub równa 4 (maksymalnie 5).
+W systemie zostały wyszczególnione dwa główne rodzaje kryteriów - numeryczne oraz logiczne. Kryteria numeryczne obejmują kryteria, które da się zmierzyć i wyrazić w postaci liczbowej. Uwzględniono tutaj takie kryteria jak: różnica wieku, różnica umiejętności oraz odległość między drużynami. Kryteria logiczne wyrażają dodatkowe wskaźniki, które mają wpływ na dobre dopasowanie drużyn, jednak nie są policzalne.  Kryteriom tym przypisane są wartości logiczne, które oznaczają czy dane kryterium zostało spełnione. Przykładowo wartość logiczna kryterium dotyczącego poziomu \textit{fair play} będzie ustawiona jeżeli średnia ocen \textit{fair play} potencjalnych rywali jest większa lub równa 4 (maksymalnie 5).
 
 Dodatkowo wyszczególniono generyczną klasę, która opakowuje dowolne kryterium dodając informację o znormalizowanej wartości liczbowej. 
 
-Zastosowaną hierarchię klas przedstawiono na rysunku \ref{fig:criterion-classes}. Rozbudowa funkcjonalności o nowe kryteria sprowadza się do utworzenia dodatkowej implementacji w odpowiednim miejscu hierarchii.  
+Zastosowaną hierarchię klas przedstawiono na rysunku \ref{fig:criterion-classes}. Rozbudowa funkcjonalności o~nowe kryteria sprowadza się do utworzenia dodatkowej implementacji w odpowiednim miejscu hierarchii.  
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{06-implementacja/rys/criterion-package-classes.PNG}
-\caption{Hierarchia klas: kryteria}
+\caption{Hierarchia klas - kryteria}
 \label{fig:criterion-classes}
 \end{figure}
 
@@ -235,7 +236,7 @@ public AgeCriterion ageCriteria(Team hostTeam, Team otherTeam) {
 
 \subsubsection{Normalizacja kryteriów}
 
- Normalizacja poszczególnych kryteriów przebiega przy użyciu różnych funkcji, dopasowanych do charakteru danych. Przykładem uzasadniającym konieczność zastosowania takiej modyfikacji może być porównanie dwóch kryteriów: odległości drużyn oraz średniego wieku zawodników. O ile kryterium odległości może być normalizowane w pełni liniowo, o tyle dla różnicy wieku taka metoda normalizacji jest błędna. Różnica wieku między dwoma zawodnikami, którzy mają 15 oraz 20 lat jest znacznie bardziej istotna aniżeli różnica między zawodnikami w wieku 30 oraz 35 lat - nie można tutaj zastosować operatora w pełni liniowego. Dodatkowo w domenie problemu wyróżniono kryteria nieliczbowe - cechy drużyny, które mogą mieć duży wpływ na jakość dopasowania, np. zadeklarowana chęć ponownej gry z daną drużyną.  
+ Normalizacja poszczególnych kryteriów przebiega przy użyciu różnych funkcji, dopasowanych do charakteru danych. Przykładem uzasadniającym konieczność zastosowania takiej modyfikacji może być porównanie dwóch kryteriów: odległości drużyn oraz średniego wieku zawodników. O ile kryterium odległości może być normalizowane w pełni liniowo, o tyle dla różnicy wieku taka metoda normalizacji jest błędna. Różnica wieku między dwoma zawodnikami, którzy mają 15 oraz 20 lat jest znacznie bardziej istotna aniżeli różnica między zawodnikami w~wieku 30 oraz 35 lat - nie można tutaj zastosować operatora w pełni liniowego. Dodatkowo w~domenie problemu wyróżniono kryteria nieliczbowe - cechy drużyny, które mogą mieć duży wpływ na jakość dopasowania, np. zadeklarowana chęć ponownej gry z daną drużyną.  
  
  \begin{comment}
 O metodach normalizacji - LinearDecay itp. 
@@ -244,7 +245,7 @@ O metodach normalizacji - LinearDecay itp.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{06-implementacja/rys/normalizer-hierarchy.PNG}
-\caption{Hierarchia klas: normalizacja}
+\caption{Hierarchia klas - normalizacja}
 \label{fig:criterion-classes}
 \end{figure}
 
@@ -258,15 +259,15 @@ F(x)=\sum_{i=1}^{k}w_{i}f_{i}(x)
 
 gdzie k - ilość kryteriów, x - wektor rozwiązań, $w_{i}$ - wagi takie że:
 
-\begin{equation*}
+\begin{equation}
 w \in [0, 1] \mbox{ oraz } \sum_{i=1}^{k}w_{i} = 1
-\end{equation*}
+\end{equation}
 
 Metoda ta została wybrana ze względu na możliwość dynamicznego doboru wag poszczególnych kryteriów. Niektóre z tych wag będą dobierane przez kapitana zgodnie z preferencjami jego drużyny. 
 
 
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[label=list:resource, caption=Przykładowa rejestracja kontrolera, basicstyle=\footnotesize\ttfamily]
+\begin{lstlisting}[label=list:resource, caption=Klasa agregująca za pomocą metody ważonych kryteriów, basicstyle=\footnotesize\ttfamily]
 
 @Service
 public class WeightedCriteriaAggregator {
@@ -292,35 +293,26 @@ public class WeightedCriteriaAggregator {
 
 \subsection{Modularność}
 
-Podobnie jak aplikacja serwerowa, aplikacja kliencka została zrealizowana w architekturze ograniczającej odpowiedzialność poszczególnych komponentów. W technologii Angular modularność uzyskuję się poprzez podział na komponenty oraz moduły, które je agregują w zbiory [X]. 
+Podobnie jak aplikacja serwerowa, aplikacja kliencka została zrealizowana w architekturze ograniczającej odpowiedzialność poszczególnych komponentów. W technologii \textit{Angular} modularność uzyskuje się poprzez podział na komponenty oraz moduły, które je agregują w zbiory \cite{ngarchitecture}. 
 
-Istotnym wzorcem jaki został zastosowany w projekcie jest dodatkowy podział komponentów na komponenty prezentacyjne oraz kontenery. Komponenty prezentacyjne zajmują się jedynie wyświetlaniem danych przekazanych im na wejściach oraz pobieraniem danych od użytkownika i przekazywaniem ich na wyjścia. Kontenery posiadają większy zakres odpowiedzialności - znają stan aplikacji oraz mogą na niego wpływać. Kontenery używają komponentów prezentacyjnych do interakcji z użytkownikiem [X]. Zastosowanie takiego podziału usprawniło rozwój aplikacji oraz pozwoliło na używanie raz zaimplementowanych komponentów prezentacyjnych w różnych miejscach aplikacji.
+Istotnym wzorcem jaki został zastosowany w projekcie jest dodatkowy podział komponentów na komponenty prezentacyjne oraz kontenery. Komponenty prezentacyjne zajmują się jedynie wyświetlaniem danych przekazanych im na wejściach oraz pobieraniem danych od użytkownika i~przekazywaniem ich na wyjścia. Kontenery posiadają większy zakres odpowiedzialności, znają stan aplikacji oraz mogą na niego wpływać. Kontenery używają komponentów prezentacyjnych do interakcji z użytkownikiem \cite{ngcomponents}. Zastosowanie takiego podziału usprawniło rozwój aplikacji oraz pozwoliło na używanie raz zaimplementowanych komponentów prezentacyjnych w różnych miejscach aplikacji.
 
-\begin{comment}
-Angular Docs:  Architecture overview
-https://angular.io/guide/architecture
-
-https://blog.angular-university.io/angular-2-smart-components-vs-presentation-components-whats-the-difference-when-to-use-each-and-why/
-Angular Architecture - Smart Components vs Presentational Components
-18 JUNE 2018
-Angular Unversity
-\end{comment}
 
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{06-implementacja/rys/modularyzacja.PNG}
-\caption{Widok wyników poszukiwania rywali: Podział na komponenty}
+\caption{Widok wyników poszukiwania rywali - podział na komponenty}
 \label{fig:criterion-classes}
 \end{figure}
 
 
 \subsection{Stan aplikacji}
 
-Jednym z wyzwań podczas implementacji aplikacji działających w przeglądarce jest zarządzanie ich stanem. Tradycyjnym podejściem dla aplikacji w technologii Angular jest przetrzymywanie danych w komponentach oraz serwisach. Sposób ten działa bez zarzutów dla bardzo małych aplikacji, jednak w miarę rozwoju pojawiają się problemy takie jak: przekazywanie danych pomiędzy komponentami, które nie zależą bezpośrednio od siebie oraz problemy z synchronizacją danych. Drugi problem dotyczy sytuacji, w której dwa komponenty korzystają z tych samych obiektów, a w pewnym momencie okazuje się, że obiekty te są różne. Ciężko jest stwierdzić, który komponent zawiera referencje do obiektu prawdziwego - aktualnego. Rozwiązaniem opisanych problemów jest wdrożenie do aplikacji koncepcji \textit{Store}. Podejście to polega na przetrzymywaniu stanu aplikacji w jednym obiekcie. Eliminuje to problem konfliktów, w aplikacji występuje tylko jedno źródło prawdy (ang. \textit{Source of truth}). Korzystanie przez różne komponenty z tych samych danych również staje się proste ze względu na przetrzymywanie ich w centralnym miejscu dostępnym z każdego miejsca aplikacji.
+Jednym z wyzwań podczas implementacji aplikacji działających w przeglądarce jest zarządzanie ich stanem. Tradycyjnym podejściem dla aplikacji w technologii \textit{Angular} jest przetrzymywanie danych w komponentach oraz serwisach. Sposób ten działa bez zarzutów dla bardzo małych aplikacji, jednak w miarę rozwoju pojawiają się problemy takie jak: przekazywanie danych pomiędzy komponentami, które nie zależą bezpośrednio od siebie oraz problemy z synchronizacją danych. Drugi problem dotyczy sytuacji, w której dwa komponenty korzystają z tych samych obiektów, a w pewnym momencie okazuje się, że obiekty te są różne. Ciężko jest stwierdzić, który komponent zawiera referencje do obiektu prawdziwego - aktualnego. Rozwiązaniem opisanych problemów jest wdrożenie do aplikacji koncepcji \textit{Store}. Podejście to polega na przetrzymywaniu stanu aplikacji w jednym obiekcie. Eliminuje to problem konfliktów, w aplikacji występuje tylko jedno źródło prawdy (ang. \textit{Source of truth}). Korzystanie przez różne komponenty z tych samych danych również staje się proste ze względu na przetrzymywanie ich w~centralnym miejscu dostępnym z każdego miejsca aplikacji.
 
-Warto również dodać, że stan aplikacji jest obiektem niemodyfikowalnym. Jedynym sposobem na zmianę stanu jest zmiana referencji na nowy obiekt. W opisywanej architekturze zajmują się tym specjalne funkcje redukujące. Funkcje te na podstawie zgłaszanych akcji dokonują aktualizacji stanu. Akcje są zgłaszane w momencie zdarzeń wygenerowanych przez użytkownika, zewnętrzne systemy bądź wewnętrznie w aplikacji. Jedną z głównych zalet takiego sposobu zmian stanu jest zwiększenie wydajności aplikacji w technologii \textit{Angular}. Komponenty mogą korzystać z bardzo wydajnego trybu odświeżania, który aktualizuje widok jedynie w momencie zmiany referencji podanych na jego wejścia - co ma miejsce przy aktualizacjach w zastosowanej architekturze. Kolejną równie ważną zaletą jest znaczne ułatwienie wykrywania błędów oraz ich przyczyn. Istnieją narzędzia deweloperskie pozwalające na śledzenie stanu  oraz jego zmian podczas działania aplikacji. Przykładowy podgląd części stanu w formie drzewa przedstawiono na rysunku \ref{fig:state}. Narzędzia umożliwiają również podgląd obiektu stanu w formacie \textit{JSON}. Przykładową sekwencję akcji generowanych oraz obsługiwanych przy logowaniu do aplikacji ukazano na rysunku \ref{fig:actions}.
+Warto również dodać, że stan aplikacji jest obiektem niemodyfikowalnym. Jedynym sposobem na zmianę stanu jest zmiana referencji na nowy obiekt. W opisywanej architekturze zajmują się tym specjalne funkcje redukujące. Funkcje te na podstawie zgłaszanych akcji dokonują aktualizacji stanu. Akcje są zgłaszane w momencie zdarzeń wygenerowanych przez użytkownika, zewnętrzne systemy bądź wewnętrznie w aplikacji. Jedną z głównych zalet takiego sposobu zmian stanu jest zwiększenie wydajności aplikacji w technologii \textit{Angular}. Komponenty mogą korzystać z bardzo wydajnego trybu odświeżania, który aktualizuje widok jedynie w momencie zmiany referencji podanych na jego wejścia - co ma miejsce przy aktualizacjach w zastosowanej architekturze. Kolejną równie ważną zaletą jest znaczne ułatwienie wykrywania błędów oraz ich przyczyn. Istnieją narzędzia deweloperskie pozwalające na śledzenie stanu  oraz jego zmian podczas działania aplikacji. Przykładowy podgląd części stanu w formie drzewa przedstawiono na rysunku \ref{fig:state}. Narzędzia umożliwiają również podgląd obiektu stanu w formacie JSON (ang. \textit{JavaScript Object Notation}). Przykładową sekwencję akcji generowanych oraz obsługiwanych przy logowaniu do aplikacji ukazano na rysunku \ref{fig:actions}.
 
 \begin{figure}[H]
 \centering
@@ -340,9 +332,9 @@ Warto również dodać, że stan aplikacji jest obiektem niemodyfikowalnym. Jedy
 
 \subsection{Formularze}
 
-Wiele funkcjonalności Team Challenge opiera się na pobraniu danych od użytkowników. W technologii \textit{Angular} wyróżnia się dwa główne sposoby budowy formularzy - sterowane znacznikami \textit{HTML} oraz reaktywne (ang. \textit{reactive}). Podczas implementacji systemu użyto formularzy reaktywnych. Są one zalecane przez twórców szkieletu \textit{Angular} ze względu na większą skalowalność oraz możliwości wielokrotnego użytku. W celu sprawdzania poprawności wprowadzonych danych już po stronie aplikacji klienckiej wykorzystano wsparcie wbudowane w module \textit{ReactiveFormsModule}. Przykładowy rezultat walidacji przedstawiono na rysunku \ref{fig:sample-form2}.
+Wiele funkcjonalności Team Challenge opiera się na pobraniu danych od użytkowników. W~technologii \textit{Angular} wyróżnia się dwa główne sposoby budowy formularzy - sterowane znacznikami \textit{HTML} oraz reaktywne (ang. \textit{reactive}). Podczas implementacji systemu użyto formularzy reaktywnych. Są one zalecane przez twórców szkieletu \textit{Angular} ze względu na większą skalowalność oraz możliwości wielokrotnego użytku. W celu sprawdzania poprawności wprowadzonych danych już po stronie aplikacji klienckiej wykorzystano wsparcie wbudowane w module \textit{ReactiveFormsModule}. Przykładowy rezultat walidacji przedstawiono na rysunku \ref{fig:sample-form2}.
 
-Komponenty wizualne takie jak przyciski, suwaki, pola wyboru oraz pola tekstowe zostały dostarczone przez bibliotekę \textit{NgZorro}.  Elementy formularza wykorzystujące mapy zostały zbudowane przy użyciu modułu \textit{@ngui/map} oraz \textit{Google Maps API}. Przykładowy rezultat został przedstawiony na rysunku \ref{fig:sample-form1}.
+Komponenty wizualne takie jak przyciski, suwaki, pola wyboru oraz pola tekstowe zostały dostarczone przez bibliotekę \textit{NgZorro}.  Elementy formularza wykorzystujące mapy zostały zbudowane przy użyciu modułu \textit{@ngui/map} oraz \textit{Google Maps API}. Przykładowy krok formularza z widokiem mapy został przedstawiony na rysunku \ref{fig:sample-form1}.
 
 \begin{comment}
 
@@ -359,7 +351,7 @@ formularze, Walidacja formularzy, pare screenow, odowlanie do instrukcji uzytkow
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{06-implementacja/rys/form1.PNG}
-\caption{Formularz wprowadzania obiektu sportowego - Krok pierwszy}
+\caption{Formularz wprowadzania obiektu sportowego - krok pierwszy}
 \label{fig:sample-form1}
 \end{figure}
 
@@ -368,7 +360,7 @@ formularze, Walidacja formularzy, pare screenow, odowlanie do instrukcji uzytkow
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{06-implementacja/rys/form2.PNG}
-\caption{Formularz wprowadzania obiektu sportowego - Krok drugi}
+\caption{Formularz wprowadzania obiektu sportowego - krok drugi}
 \label{fig:sample-form2}
 \end{figure}
 
@@ -385,7 +377,7 @@ April 12, 2018
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{06-implementacja/rys/form3.PNG}
-\caption{Formularz wprowadzania obiektu sportowego - Krok trzeci}
+\caption{Formularz wprowadzania obiektu sportowego - krok trzeci}
 \label{fig:sample-form3}
 \end{figure}
 
@@ -394,18 +386,21 @@ Walidacja poprawności danych w systemie została zrealizowana zarówno po stron
 
 \section{Bezpieczeństwo}
 
-Szczególną uwagę poświęcono implementacji zabezpieczeń systemu oraz zgromadzonych danych użytkowników. Funkcjonalności związane z bezpieczeństwem zostały zrealizowane bazując na module Spring Security, który dostarcza wiele przydatnych mechanizmów oraz możliwości ich konfiguracji.
+Szczególną uwagę poświęcono implementacji zabezpieczeń systemu oraz zgromadzonych danych użytkowników. Funkcjonalności związane z bezpieczeństwem zostały zrealizowane bazując na module \textit{Spring Security}, który dostarcza wiele przydatnych mechanizmów oraz możliwości ich konfiguracji.
 
-Hasła użytkowników przechowywane są w formie zaszyfrowanej za pomocą funkcji skrótu BCrypt. Spring Security dostarcza klasę implementującą ten algorytm - BCryptPasswordEncoder. Główną zaletą takiego sposobu szyfrowania jest generowanie losowego ciągu znaków, tak zwanej soli, który dodatkowo wzmacnia bezpieczeństwo hasła. Zastosowanie soli przy hashowaniu znacznie utrudnia złamanie hasła przez ataki przy użyciu tęczowych tabel. W przypadku algorytmu bcrypt wygenerowana sól jest przechowywana razem z zaszyfrowanym hasłem w bazie danych. W przypadku prób logowania jest ona wyciągana z bazy oraz używana do przetworzenia podanego hasła w celu porównania zgodności.
+Hasła użytkowników przechowywane są w formie zaszyfrowanej za pomocą funkcji skrótu \textit{BCrypt}. \textit{Spring Security} dostarcza klasę implementującą ten algorytm - \textit{BCryptPasswordEncoder}. Główną zaletą takiego sposobu szyfrowania jest generowanie losowego ciągu znaków, tak zwanej soli, który dodatkowo wzmacnia bezpieczeństwo hasła. Zastosowanie soli przy hashowaniu znacznie utrudnia złamanie hasła przez ataki przy użyciu tęczowych tabel. W przypadku algorytmu \textit{bcrypt} wygenerowana sól jest przechowywana razem z zaszyfrowanym hasłem w~bazie danych. W przypadku prób logowania jest ona wyciągana z bazy oraz używana do przetworzenia podanego hasła w celu porównania zgodności.
 
-Autoryzacja zapytań została zaimplementowana w oparciu o technologię JWT. Formularz logowania przesyłany jest z aplikacji klienckiej do aplikacji serwerowej, gdzie jest przechwytywany przez kontroler TokenResource. W przypadku pomyślnej autentykacji generowany jest token JWT zawierający podstawowe informacje o użytkowniku, jego rolach oraz dacie wygenerowania oraz wygaśnięcia tokenu. Token jest podpisany za pomocą algorytmu HS256 specjalnym kluczem, co praktycznie uniemożliwia jego modyfikację bądź podrobienie bez znajomości klucza. Wygenerowany token wraca do klienta, gdzie jest zapisywany w stanie aplikacji oraz dekodowany w celu odczytania otrzymanych informacji. Token jest używany do autoryzacji dalszych zapytań do aplikacji serwerowej, w tym celu dodawany jest jako nagłówek każdego żądania HTTP. Serwer otrzymując żądania w pierwszej kolejności sprawdza obecność nagłówka oraz weryfikuje zawarty w nim token pod względem poprawności, aktualności oraz praw dostępów do konkretnych zasobów. 
+Autoryzacja zapytań została zaimplementowana w oparciu o technologię JWT. Formularz logowania przesyłany jest z aplikacji klienckiej do aplikacji serwerowej, gdzie jest przechwytywany przez kontroler \textit{TokenResource}. W przypadku pomyślnej autentykacji generowany jest token JWT zawierający podstawowe informacje o użytkowniku, jego rolach oraz dacie wygenerowania oraz wygaśnięcia tokenu. Token jest podpisany za pomocą algorytmu HS256 specjalnym kluczem, co praktycznie uniemożliwia jego modyfikację bądź podrobienie bez znajomości klucza. Wygenerowany token wraca do klienta, gdzie jest zapisywany w stanie aplikacji oraz dekodowany w celu odczytania otrzymanych informacji. Token jest używany do autoryzacji dalszych zapytań do aplikacji serwerowej, w tym celu dodawany jest jako nagłówek każdego żądania HTTP. Serwer otrzymując żądania w pierwszej kolejności sprawdza obecność nagłówka oraz weryfikuje zawarty w nim token pod względem poprawności, aktualności oraz praw dostępów do konkretnych zasobów. 
 
 Ze względu na ograniczony czas ważności tokenu aplikacja kliencka zmuszona jest co pewien czas odnawiać token. W tym celu wysyła zapytanie na specjalny adres \textit{POST /api/token/renewal}. Serwer w przypadku pomyślnej weryfikacji aktualnego tokenu generuje nowy o nowej dacie ważności. W przypadku niepomyślnej weryfikacji serwer zwraca kod błędu, w wyniku czego następuje wylogowanie użytkownika z informacją o wygaśnięciu sesji i konieczności nowego logowania.
 
-\section{Testowanie}
+\section{Weryfikacja implementacji}
 
-Część funkcjonalności systemu została pokryta testami jednostkowymi, które uruchamiane były każdorazowo po wprowadzonych zmianach w kodzie. Testy te pomagały wykrywać problemy związane z działaniem pojedynczych komponentów w izolacji. Weryfikacja poprawności działania całości systemu z punktu widzenia użytkownika końcowego, czyli testy e2e (ang. \textit{end-to-end}) wykonywana była w sposób manualny przez autora pracy.
+Część funkcjonalności systemu została pokryta testami jednostkowymi, które uruchamiane były każdorazowo po wprowadzonych zmianach w kodzie. Testy te pomagały wykrywać problemy związane z działaniem pojedynczych komponentów w izolacji. Głównym narzędziem wykorzystanym do tworzenia testów oraz ich wykonywania był \textit{JUnit 4}. Dodatkowo zostały użyte biblioteki \textit{Hamcrest 1.3} oraz \textit{Mockito 2.15.0}. Wykorzystanie \textit{Hamcrest} wpłynęło na czytelność asercji. Biblioteka \textit{Mocikto} pozwoliła na wykonywanie testów w pełnej izolacji poprzez wykorzystywanie w testach sztucznych implementacji zależności testowanej klasy. Dzięki temu w poszczególnych testach sprawdzana była poprawność implementacji jednej klasy, a nie innych klas, od których ona zależy.
 
-Podczas trwania implementacji aplikacji klienckiej pojawiła się potrzeba przeprowadzenie testów intuicyjności elementów interfejsu. Wybrane scenariusze interakcji z użytkownikiem zostały zweryfikowane poprzez dwukrotnie przeprowadzone badania moderowane. W wyniku przeprowadzonych testów zidentyfikowano elementy nieintuicyjne oraz wprowadzono usprawnienia. Przeprowadzone testy zostały szerzej opisane w rozdziale 8.
+Weryfikacja działania systemu jako całość, pod kątem zgodności z założeniami, czyli testy e2e (ang. \textit{end-to-end}) wykonywana była w sposób manualny przez autora pracy. 
 
+\begin{comment}
+Podczas trwania implementacji aplikacji klienckiej pojawiła się potrzeba przeprowadzenie testów intuicyjności elementów interfejsu. Wybrane scenariusze interakcji z użytkownikiem zostały zweryfikowane poprzez dwukrotnie przeprowadzone badania moderowane. W wyniku przeprowadzonych testów zidentyfikowano elementy nieintuicyjne oraz wprowadzono usprawnienia. Przeprowadzone testy zostały szerzej opisane w następnym rozdziale.
+\end{comment}
 

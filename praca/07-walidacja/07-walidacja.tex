@@ -4,17 +4,19 @@
 OCENA PRZYDATNOSCI UZYTECZNOSCI WALIDACJA
 \end{comment}
 
-System został dwukrotnie poddany ocenie użyteczności. Pierwszy etap badań odbył się po ukończeniu implementacji pierwszego prototypu systemu. Drugi etap odbył się po ukończeniu drugiego prototypu, który poprawiał niedoskonałości odkryte podczas pierwszego etapu. 
+System został dwukrotnie poddany walidacji. Pierwszy etap testów odbył się po ukończeniu implementacji pierwszego prototypu systemu. Drugi etap odbył się po ukończeniu drugiego prototypu, który poprawiał niedoskonałości odkryte podczas pierwszego etapu. 
+Głównym celem przeprowadzonego procesu walidacji było sprawdzenie, czy implementowane rozwiązanie spełnia oczekiwania potencjalnych odbiorców. 
 
-Do weryfikacji wytypowane zostały dwie funkcjonalności istotne dla działania systemu. Pierwszą z nich jest proces, który musi przejść każdy nowy użytkownik systemu, czyli tworzenie profilu zawodnika. Drugą z wybranych funkcjonalności jest poszukiwanie rywali oraz rzucanie im wyzwania. Jest to najważniejsza funkcja systemu zawierająca elementy interfejsu wymagające weryfikacji użyteczności.
+Do walidacji wytypowane zostały dwie funkcjonalności istotne dla działania systemu. Pierwszą z nich jest proces, który musi przejść każdy nowy użytkownik systemu, czyli tworzenie profilu zawodnika. Drugą z wybranych funkcjonalności jest poszukiwanie rywali oraz rzucanie im wyzwania. Jest to najważniejsza funkcja systemu zawierająca elementy interfejsu wymagające sprawdzenia użyteczności.
 
-\section{Metodyka badań}
 
-Badania odbyły się w formie badań moderowanych, czyli z udziałem osoby nadzorującej ich przebieg \cite{usstudywhatis}. Moderatorem w przypadku wszystkich badań był autor tej pracy. Rolą moderatora w przypadku takich badań jest obserwacja akcji podejmowanych przez osobę wykonującą zadania w systemie oraz sporządzanie notatek.
+\section{Metodyka testów}
+
+Testy odbyły się w formie badań moderowanych, czyli z udziałem osoby nadzorującej ich przebieg \cite{usstudywhatis}. Moderatorem w przypadku wszystkich badań był autor tej pracy. Rolą moderatora w przypadku takich badań jest obserwacja akcji podejmowanych przez osobę wykonującą zadania w systemie oraz sporządzanie notatek.
 
 Do badań zostały wybrane osoby potencjalnie zainteresowane tematem, czyli osoby uprawiające sporty zespołowe. W celu zbadania użyteczności systemu dla różnych grup wiekowych zaproszono osoby w przedziale od 17 do 35 lat. Wśród ankietowanych były osoby profesjonalnie zajmujące się systemami webowymi jak również osoby spoza tej branży. Zgodnie z zaleceniami odnalezionymi w literaturze, w każdym z etapów badań wzięło udział pięciu respondentów \cite{usabilitystudy}.
 
-Dla uczestników badania została przygotowana ankieta składająca się z trzech części. Pierwsza część była ankietą wstępną uzupełnianą przed badaniami. Zawierała ona krótkie wprowadzenie do systemu oraz pytania<>. Kolejne dwie części zawierały opisy zadań przygotowanych dla użytkowników oraz pytania kontrolne dotyczące intuicyjności poszczególnych procesów. 
+Dla uczestników badania została przygotowana ankieta składająca się z trzech części. Pierwsza część była ankietą wstępną uzupełnianą przed badaniami. Zawierała ona krótkie wprowadzenie do systemu oraz pytania dotyczące wieku, profesji oraz umiejętności obsługi komputera osoby ankietowanej. Kolejne dwie części zawierały opisy zadań przygotowanych dla użytkowników oraz pytania kontrolne dotyczące intuicyjności poszczególnych procesów. 
 
 Uczestnicy badania zostali poinformowani o tym, że obiektem badania jest interfejs systemu, a nie oni sami. Ze względu na obecność moderatora osoby uczestniczące w badaniu zostały poproszone o głośne myślenie oraz wyrażanie uwag. Moderator podczas badań na bieżąco notował istotne akcje podejmowane przez użytkowników oraz ich uwagi. Po wykonaniu zadań miała miejsce krótka dyskusja na temat zalet interfejsu, napotkanych problemów w obsłudze oraz potencjalnych usprawnień. Na podstawie notatek moderatora oraz ankiet zostały wyciągnięte wnioski dotyczące dalszego rozwoju interfejsu.
 
@@ -74,7 +76,7 @@ Respondenci używający pierwszego prototypu odnaleźli odpowiedni formularz, je
 
 \subsubsection{Deklaracja preferencji wyszukiwania}
 
-Deklaracja preferencji odnośnie rywali okazała się być problematyczna dla części użytkowników. Zaproponowany w ramach pierwszego prototypu podział procentowy wprowadzał użytkowników w błąd. Z punktu widzenia algorytmu im bardziej znaczące jest dane kryterium tym większą wartość (wagę) powinno ono otrzymać. Użytkownicy jednak wartość 0\% utożsamiali z brakiem różnicy a więc dobrym dopasowaniem. Z tego względu niektórzy respondenci ustawili suwaki odwrotnie niż było to wskazane. Interfejs przedstawiono na rysunku \ref{fig:suwaki-bef}
+Deklaracja preferencji odnośnie rywali okazała się być problematyczna dla części użytkowników. Zaproponowany w ramach pierwszego prototypu podział procentowy wprowadzał użytkowników w błąd. Z punktu widzenia algorytmu im bardziej znaczące jest dane kryterium tym większą wartość (wagę) powinno ono otrzymać. Użytkownicy jednak wartość 0\% utożsamiali z~brakiem różnicy a więc dobrym dopasowaniem. Z tego względu niektórzy respondenci ustawili suwaki odwrotnie niż było to wskazane. Interfejs przedstawiono na rysunku \ref{fig:suwaki-bef}
 
 Dużą część uwagi podczas przygotowywania drugiego prototypu poświęcono poprawie intuicyjności tej funkcjonalności. W pierwszej kolejności przygotowano makietę nowego wyglądu i opisu funkcjonalności, która została przedstawiona respondentom i spotkała się z ich aprobatą. Następnie planowane zmiany zostały zaimplementowane i zweryfikowane podczas testów drugiego prototypu. Głównym usprawnieniem było zrezygnowanie z wartości procentowych na rzecz abstrakcji - punktów preferencji. Dodatkowo dodano symbole graficzne, dokładniejsze opisy poszczególnych wyborów oraz panel z pomocą odnośnie rozdzielania punktów preferencji. Interfejs po zmianach przedstawiono na rysunku \ref{fig:suwaki-aft}. 
 
@@ -98,7 +100,7 @@ Wprowadzone usprawnienia przełożyły się na znaczne lepsze zrozumienie funkcj
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{07-walidacja/rys/survey-search.PNG}
+\includegraphics[width=\linewidth]{07-walidacja/rys/survey-search.png}
 \caption{Zestawienie ocen intuicyjności deklaracji preferencji wyszukiwania (1 - nie intuicyjne, 5 - w pełni intuicyjne)}
 \label{fig:survey-suwaki}
 \end{figure}

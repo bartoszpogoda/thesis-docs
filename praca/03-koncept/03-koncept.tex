@@ -1,20 +1,19 @@
-\chapter{Koncepcja systemu Team Challenge}
+\chapter{Koncepcja systemu Team~Challenge}
 
 \begin{comment}
 Projekt koncepcyjny? Koncepcja systemu? Systemu NAZWA_WLASNA
 \end{comment}
 
-W niniejszym rozdziale został przedstawiony koncept głównych funkcjonalności projektowanego systemu. Podczas pracy koncepcyjnej autor pracy miał na względzie główny cel systemu jakim jest zrzeszanie zawodników. Proponowane funkcjonalności mają umożliwić osiągnięcie tego celu. Tworząc koncept autor kierował się znajomością potrzeb grupy docelowej, której sam jest częścią, a niejednokrotnie swoje pomysły weryfikował z innymi zawodnikami.
-
+W niniejszym rozdziale została przybliżona koncepcja głównych funkcjonalności platformy \textit{Team Challenge}. Podczas pracy koncepcyjnej autor pracy miał na względzie główny cel systemu jakim jest zrzeszanie zawodników. Proponowane funkcjonalności mają umożliwić osiągnięcie tego celu. Tworząc koncept autor kierował się znajomością potrzeb grupy docelowej, której sam jest częścią, a niejednokrotnie swoje pomysły weryfikował z innymi zawodnikami.
 
   
 \section{Baza wiedzy}
 
-W celu umożliwienia zrzeszania zawodników sportów zespołowych konieczne jest przechowywanie w systemie bazy wiedzy na temat zawodników, drużyn oraz obiektów sportowych. W~poniższych sekcjach zostaną przybliżone główne założenia dotyczące przechowywania poszczególnych danych.
+W celu umożliwienia zrzeszania zawodników sportów zespołowych konieczne jest przechowywanie w systemie bazy wiedzy na temat zawodników, drużyn oraz obiektów sportowych. W~poniższych sekcjach zostaną przybliżone główne założenia dotyczące zbierania poszczególnych danych.
   
 \subsection{Baza zawodników}
 
-Zawodnicy uprawiający amatorsko pewną dyscyplinę sportu są podstawową grupą docelową projektowanego systemu oraz elementem budującym społeczność. Podstawową funkcjonalnością systemu musi być rejestracja zawodników. Podczas procesu rejestracji od użytkownika powinny zostać pobrane dane niezbędne do funkcjonowania systemu, jak również informacje potrzebne do realizacji dalszych założeń, co będzie opisane w kolejnych podpunktach.
+Zawodnicy uprawiający amatorsko pewną dyscyplinę sportu są podstawową grupą docelową projektowanego systemu oraz elementem budującym społeczność. Podstawową funkcjonalnością systemu będzie rejestracja zawodników. Podczas procesu rejestracji od użytkownika zostaną pobrane dane niezbędne do funkcjonowania systemu.
 
 \subsection{Baza drużyn}
 
@@ -30,11 +29,11 @@ Dostęp do kluczowych funkcjonalności takich jak szukanie przeciwników oraz rz
 
 \subsection{Baza obiektów sportowych}
 
-Mając na uwadze docelową grupę docelową projektowanego systemu jaką są zawodnicy grający amatorsko - system powinien dostarczać bazę obiektów ogólnodostępnych, a przede wszystkim nie wymagających wkładu finansowego. Głównym konceptem w tym zakresie jest umożliwienie zawodnikom zgłaszania obiektów. 
+Mając na uwadze docelową grupę docelową projektowanego systemu, jaką są zawodnicy grający amatorsko, system powinien dostarczać bazę obiektów ogólnodostępnych, a przede wszystkim nie wymagających wkładu finansowego. Głównym założeniem w tym zakresie jest umożliwienie zawodnikom zgłaszania obiektów. 
 
 \section{Wspomaganie poszukiwania rywali}
 
-Kluczową funkcjonalnością systemu jest wspomaganie poszukiwania rywali do gry. Projektując tę funkcjonalność autor pracy miał na względzie, że najważniejszym ogniwem w systemie jest korzystający z niego człowiek. Z tego względu system nigdy będzie podejmował decyzji o wyborze przeciwnika samodzielnie. Celem systemu będzie wspieranie tego procesu poprzez dostarczanie kapitanowi propozycji przeciwników na podstawie zdefiniowanych przez niego preferencji.
+Kluczową funkcjonalnością systemu będzie wspomaganie poszukiwania rywali do gry. Projektując tę funkcjonalność autor pracy miał na względzie, że najważniejszym ogniwem w systemie jest korzystający z niego człowiek. Z tego względu system nigdy będzie podejmował decyzji o~wyborze przeciwnika samodzielnie. Celem systemu będzie wspieranie tego procesu poprzez dostarczanie kapitanowi propozycji przeciwników na podstawie zdefiniowanych przez niego preferencji.
 
 
 \subsection{Kryteria dopasowania}
@@ -51,7 +50,7 @@ Podstawowym kryterium dopasowywania drużyn będzie maksymalizacja satysfakcji z
 
 Istotne z punktu widzenia kapitana szukającego przeciwników mogą być również czynniki wpływające na możliwość umówienia spotkania. Mogą być to na przykład informacje dotyczące aktywności drużyny przeciwnej, czy na przykład jej preferowane godziny gry.
 
-Przytoczone kryteria powinny zostać uwzględnione w projektowanym mechanizmie wspomaganego wyszukiwania przeciwników. Mechanizm powinien zostać zaimplementowany w sposób rozszerzalny, aby możliwe było definiowanie nowych kryteriów wraz z potrzebami rozwojowymi systemu.
+Przytoczone kryteria powinny zostać uwzględnione w projektowanym mechanizmie wspomaganego wyszukiwania przeciwników. Mechanizm powinien zostać zaimplementowany w~sposób rozszerzalny, aby możliwe było definiowanie nowych kryteriów wraz z potrzebami rozwojowymi systemu.
 
 \subsection{Problem optymalizacji wielokryterialnej}
 
@@ -66,9 +65,9 @@ Często jednak podjecie decyzji może być uwarunkowane większą liczbą czynni
 \label{fig:diagram-trad-alg-opt}
 \end{figure}
 
-Tradycyjnym sposobem rozwiązania problemu jest w pierwszej kolejności znormalizowanie wartości kryteriów do przedziału wartości <0,1>, a następnie dokonanie wyboru korzystając z wybranej funkcji agregującej \cite{optwielok}. Ogólny schemat został przedstawiony na rysunku ~\ref{fig:diagram-trad-alg-opt}
+Tradycyjnym sposobem rozwiązania problemu jest w pierwszej kolejności znormalizowanie wartości kryteriów do przedziału wartości <0,1>, a następnie dokonanie wyboru korzystając z~wybranej funkcji agregującej \cite{optwielok}. Ogólny schemat został przedstawiony na rysunku ~\ref{fig:diagram-trad-alg-opt}.
 
-Problem podobnej natury występuje w projektowanym systemie. Poszukiwanie rywali do gry można sprowadzić do poszukiwania najlepszych decyzji wyboru drużyny spośród kwalifikujących się drużyn zdefiniowanych w systemie. Przykładowe kryteria wpływające na wartość funkcji oceny dla poszczególnych decyzji (rywali) zostały zdefiniowane w poprzednim podrozdziale.
+Problem podobnej natury występuje w projektowanym systemie. Poszukiwanie rywali do gry można sprowadzić do poszukiwania najlepszych decyzji wyboru drużyny spośród kwalifikujących się drużyn zdefiniowanych w systemie. Przykładowe kryteria wpływające na wartość funkcji oceny dla poszczególnych decyzji (rywali) zostały zdefiniowane w poprzedniej sekcji.
 
 \begin{comment}
 \subsection{Rozszerzenie tradycyjnego algorytmu}
@@ -104,23 +103,23 @@ Metoda ta została wybrana ze względu na możliwość dynamicznego doboru wag p
 
 \section{Wspomaganie umawiania się na rozgrywkę}
 
-Kolejną bazową funkcjonalnością systemu jest wspieranie przebiegu umawiania spotkań. Kapitan aktywnej drużyny może rzucić wyzwanie innej aktywnej drużynie. Kapitan wyzwanej drużyny może podjąć decyzję o odrzuceniu wyzwania. W przeciwnym wypadku rozpoczyna się proces negocjacji terminu oraz miejsca spotkania. 
+Kolejną bazową funkcjonalnością systemu będzie wspieranie przebiegu umawiania spotkań. Kapitan aktywnej drużyny będzie miał możliwość rzucenia wyzwania innej aktywnej drużynie. Kapitan wyzwanej drużyny będzie mógł podjąć decyzję o odrzuceniu wyzwania. W przeciwnym wypadku rozpocznie się proces negocjacji terminu oraz miejsca spotkania. 
 
 \subsection{Negocjacja terminu oraz miejsca spotkania}
 
-Kapitanowie drużyn, komunikując się ze swoimi zawodnikami, mogą dodawać do puli ofert swoje propozycje składające się z daty, godziny oraz miejsca spotkania. Miejscem spotkania może być dowolny obiekt sportowy zgłoszony w tym samym regionie co drużyny.  Negocjacje spotkania kończą się w momencie gdy jeden z kapitanów zaakceptuje propozycję drużyny przeciwnej. Termin oraz miejsce zawarte w zaakceptowanej ofercie stają się planowanym terminem oraz miejscem spotkania, a wyzwanie otrzymuje status zaakceptowanego.
+Kapitanowie drużyn, komunikując się ze swoimi zawodnikami, będą mogli dodawać do puli ofert swoje propozycje składające się z daty, godziny oraz miejsca spotkania. Miejscem spotkania może być dowolny obiekt sportowy zgłoszony w tym samym regionie co drużyny.  Negocjacje spotkania będą uznane za zakończone w momencie gdy jeden z kapitanów zaakceptuje propozycję drużyny przeciwnej. Termin oraz miejsce zawarte w zaakceptowanej ofercie staną się planowanym terminem oraz miejscem spotkania, a wyzwanie otrzyma status zaakceptowanego.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{03-koncept/rys/offer-pool.PNG}
-\caption{Konceptualny diagram negocjacji przy użyciu puli ofert}
+\caption{Koncepcyjny diagram negocjacji przy użyciu puli ofert}
 \label{fig:diagram-alg-ext}
 \end{figure}
 
 \subsection{Wyniki spotkań}
 
-Wyzwanie uznaje się za zakończone gdy nastąpi wprowadzenie do systemu jego wyniku. Wynik może zostać wprowadzony przez dowolną z drużyn biorących udział w wyzwaniu. Wprowadzony wynik powinien zostać poddany weryfikacji przez drugiego z kapitanów, który może go potwierdzić, bądź w przypadku niezgodności, odrzucić. Wynikiem jest ilość punktów zdobytych przez poszczególne drużyny. W przypadku gdy są to dwie różne liczby wyzwanie kończy się zwycięstwem drużyny, która zdobyła ich więcej. W przeciwnym razie wynikiem wyzwania jest remis.
+Wyzwanie zostanie uznanie za zakończone gdy nastąpi wprowadzenie do systemu jego wyniku. Wynik będzie wprowadzony przez dowolną z drużyn biorących udział w wyzwaniu. Wprowadzony wynik powinien zostać poddany weryfikacji przez drugiego z kapitanów, który może go potwierdzić, bądź w przypadku niezgodności, odrzucić. Wynikiem jest ilość punktów zdobytych przez poszczególne drużyny. W przypadku gdy są to dwie różne liczby wyzwanie zakończy się zwycięstwem drużyny, która zdobyła ich więcej. W przeciwnym razie wynikiem wyzwania będzie remis.
 
 \subsection{Ocena drużyn}
 
-Kapitanowie drużyn powinni być w stanie dokonać oceny drużyny rywali po zakończonym spotkaniu. Wypełnienie formularza ma na celu dostarczenie do systemu danych, które mogą poprawić jakość wyszukiwania drużyn. Przykładowymi pytaniami mogą być tutaj: ocena poziomu fair-play drużyny oraz deklaracja chęci ponownej rozgrywki w przyszłości. Ze względu na umożliwienie swobodnej oraz szczerej odpowiedzi oceny nie mogą być widoczne dla ocenianych drużyn.
+Kapitanowie drużyn będą mieli możliwość oceny drużyny rywali po zakończonym spotkaniu. Wypełnienie formularza ma na celu dostarczenie do systemu danych, które mogą poprawić jakość wyszukiwania drużyn. Przykładowymi pytaniami mogą być tutaj: ocena poziomu fair-play drużyny oraz deklaracja chęci ponownej rozgrywki w przyszłości. Ze względu na umożliwienie swobodnej oraz szczerej odpowiedzi oceny nie mogą być widoczne dla ocenianych drużyn.

@@ -1,7 +1,7 @@
+%\chapter{Prezentacja działani}
+\chapter{Prezentacja działania systemu Team~Challenge}
 
-\chapter{Działanie systemu Team Challenge}
-
-W poniższym rozdziale zostało przybliżone działanie systemu Team Challenge z punktu widzenia użytkownika końcowego. Dla wybranych funkcjonalności systemu został przedstawiony sposób realizacji oraz przykładowe widoki. Zrzuty ekranu zostały wykonane dla drugiego prototypu aplikacji, wdrożonego na platformę Heroku \textit{www.team-challenge.herokuapp.com}.   
+W poniższym rozdziale zostało przybliżone działanie systemu \textit{Team Challenge} z punktu widzenia użytkownika końcowego. Dla wybranych funkcjonalności systemu został przedstawiony sposób realizacji oraz przykładowe widoki. Zrzuty ekranu zostały wykonane dla drugiego prototypu aplikacji, wdrożonego na platformę \textit{Heroku} \textit{www.team-challenge.herokuapp.com}.   
 
 \section{Rejestracja i logowanie}
 
@@ -14,7 +14,9 @@ Pierwszą funkcjonalnością z jaką ma styczność każdy nowy użytkownik jest
 \label{fig:ss-landing}
 \end{figure}
 
-Formularz rejestracyjny został przedstawiony na rysunku \ref{fig:ss-register}. Podany przez użytkownika adres e-mail będzie jego loginem do systemu. Hasło pobierane jest dwukrotnie w celu zmniejszenia szansy na omyłkowe zadeklarowanie błędnego hasła. Dodatkowo hasło ze względów bezpieczeństwa musi składać się z co najmniej 7 znaków. Imię i nazwisko służy do dalszej identyfikacji użytkownika w systemie. Nowy użytkownik również proszony jest o podanie swojej daty urodzenia, ponieważ wiek zawodników uwzględniany jest podczas dopasowywania drużyn.
+Formularz rejestracyjny został przedstawiony na rysunku \ref{fig:ss-register}. Podany przez użytkownika adres e-mail będzie jego loginem do systemu. Hasło pobierane jest dwukrotnie w celu zmniejszenia szansy na omyłkowe zadeklarowanie błędnego hasła. Dodatkowo hasło ze względów bezpieczeństwa musi składać się z co najmniej 7 znaków.   
+%Imię i nazwisko służy do dalszej identyfikacji użytkownika w %systemie. 
+%Nowy użytkownik również proszony jest o podanie swojej daty %urodzenia, ponieważ wiek zawodników uwzględniany jest podczas %dopasowywania drużyn.
 
 
 \begin{figure}[H]
@@ -35,13 +37,13 @@ Po utworzeniu konta użytkownik może się zalogować do systemu za pomocą form
 
 \section{Tworzenie profilu zawodnika}
 
-Po pierwszym logowaniu nowego użytkownika, zostaje on przekierowany do kreatora zawodnika. Jest to formularz pozwalający na uzupełnienie swojego profilu zawodnika o informacje konieczne dla funkcjonowania systemu Team Challenge. Pierwszy krok formularza przedstawiono na rysunku \ref{fig:ss-profile-1}.
+Po pierwszym logowaniu nowego użytkownika, zostaje on przekierowany do kreatora zawodnika. Jest to formularz pozwalający na uzupełnienie swojego profilu zawodnika o informacje konieczne dla funkcjonowania systemu \textit{Team Challenge}. Pierwszy krok formularza przedstawiono na rysunku \ref{fig:ss-profile-1}.
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{065-dzialanie/rys/ss-profile-1.PNG}
-\caption{Widok kreatora zawodnika - krok 1}
+\caption{Widok kreatora zawodnika - krok pierwszy}
 \label{fig:ss-profile-1}
 \end{figure}
 
@@ -50,7 +52,7 @@ Region jest wybierany spośród zdefiniowanych przez administratora. W prototypo
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{065-dzialanie/rys/ss-profile-2.PNG}
-\caption{Widok kreatora zawodnika - krok 2}
+\caption{Widok kreatora zawodnika - krok drugi}
 \label{fig:ss-profile-2}
 \end{figure}
 
@@ -59,7 +61,7 @@ Użytkownik deklaruje swój stopień zaawansowania oraz częstość gry. Na pods
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{065-dzialanie/rys/ss-profile-3.PNG}
-\caption{Widok kreatora zawodnika - krok 3}
+\caption{Widok kreatora zawodnika - krok trzeci}
 \label{fig:ss-profile-3}
 \end{figure}
 
@@ -88,7 +90,7 @@ Pierwszym krokiem jest zdefiniowanie nazwy drużyny. Nazwa ta będzie reprezento
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{065-dzialanie/rys/ss-team-1.PNG}
-\caption{Widok kreatora drużyny - krok 1}
+\caption{Widok kreatora drużyny - krok pierwszy}
 \label{fig:ss-team-1}
 \end{figure}
 
@@ -97,7 +99,7 @@ Podobnie jak w przypadku profilu zawodnika, kapitan ma możliwość wgrania zdj�
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{065-dzialanie/rys/ss-team-2.PNG}
-\caption{Widok kreatora drużyny - krok 2}
+\caption{Widok kreatora drużyny - krok drugi}
 \label{fig:ss-team-2}
 \end{figure}
 
@@ -106,7 +108,7 @@ Kapitan może wybrać punkt macierzysty drużyny, czyli lokalizację służącą
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{065-dzialanie/rys/ss-team-3.PNG}
-\caption{Widok kreatora drużyny - krok 3}
+\caption{Widok kreatora drużyny - krok trzeci}
 \label{fig:ss-team-3}
 \end{figure}
 
@@ -115,13 +117,13 @@ Ostatnim krokiem kreatora jest widok rekrutacji, który umożliwia wysłanie wst
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{065-dzialanie/rys/ss-team-5.PNG}
-\caption{Widok kreatora drużyny - krok 4}
+\caption{Widok kreatora drużyny - krok czwarty}
 \label{fig:ss-team-5}
 \end{figure}
 
 \section{Wyszukiwanie rywali i rzucanie wyzwań}
 
-Funkcjonalność wyszukiwania rywali oraz umawiania spotkań staje się dostępna dla kapitana drużyny w momencie gdy zbierze on co najmniej trzech zawodników. Jest to minimalny rozmiar drużyny dla koszykówki 3 na 3. Kapitan aktywnej drużyny ma dostęp do przycisku ``Szukaj rywali`` na pasku nawigacji. Przycisk ten służy do szybkiej nawigacji do funkcjonalności z każdego miejsca aplikacji. Kapitan może również użyć zakładki ``Szukaj rywali`` w widoku społeczności, który widoczny jest na rysunku \ref{fig:ss-search-0}. 
+Funkcjonalność wyszukiwania rywali oraz umawiania spotkań staje się dostępna dla kapitana drużyny w momencie gdy zbierze on co najmniej trzech zawodników. Jest to minimalny rozmiar drużyny dla koszykówki 3 na 3. Kapitan aktywnej drużyny ma dostęp do przycisku ``Szukaj rywali`` na pasku nawigacji. Przycisk ten służy do szybkiej nawigacji do funkcjonalności z~każdego miejsca aplikacji. Kapitan może również użyć zakładki ``Szukaj rywali`` w widoku społeczności, który widoczny jest na rysunku \ref{fig:ss-search-0}. 
 
 \begin{figure}[H]
 \centering
@@ -137,7 +139,7 @@ Pierwszym etapem wyszukiwania rywali jest określenie preferencji kapitana. Form
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{065-dzialanie/rys/ss-search-1.PNG}
+\includegraphics[width=\linewidth]{065-dzialanie/rys/ss-search-1.png}
 \caption{Widok formularza deklaracji preferencji drużyny}
 \label{fig:ss-search-1}
 \end{figure}
@@ -152,7 +154,7 @@ Wyniki wyszukiwania przedstawione są w postaci listy posortowanej według pozio
 \label{fig:ss-search-2}
 \end{figure}
 
-Kapitan wnioskując na podstawie wskaźników może od razu wybrać rywali albo zaznaczyć dwie lub trzy drużyny w celu porównania. W momencie zaznaczenia odpowiedniej liczby elementów uaktywnia się przycisk "Porównaj zaznaczone drużyny", który przenosi użytkownika do widoku porównania przedstawionego na rysunku \ref{fig:ss-search-4}. Wybrane drużyny zostają zestawione w sąsiednich kolumnach w celu ułatwienia podjęcia decyzji kapitanowi. Wykres przedstawia dopasowanie poszczególnych drużyn, a na mapie znajdują się punkty macierzyste zespołu kapitana oraz pozostałych będących porównywanych. W dolnej części widoku nie ujętej na zrzucie ekranu znajdują się informacje w formie tekstowej oraz przedstawieni są zawodnicy poszczególnych zespołów.
+Kapitan wnioskując na podstawie wskaźników może od razu wybrać rywali albo zaznaczyć dwie lub trzy drużyny w celu porównania. W momencie zaznaczenia odpowiedniej liczby elementów uaktywnia się przycisk "Porównaj zaznaczone drużyny", który przenosi użytkownika do widoku porównania przedstawionego na rysunku \ref{fig:ss-search-4}. Wybrane drużyny zostają zestawione w sąsiednich kolumnach w celu ułatwienia podjęcia decyzji kapitanowi. Wykres przedstawia dopasowanie poszczególnych drużyn, a na mapie znajdują się punkty macierzyste zespołu kapitana oraz pozostałych biorących udział w porównaniu. W dolnej części widoku nie ujętej na zrzucie ekranu znajdują się informacje w formie tekstowej oraz przedstawieni są zawodnicy poszczególnych zespołów.
 
 \begin{figure}[H]
 \centering
@@ -161,7 +163,7 @@ Kapitan wnioskując na podstawie wskaźników może od razu wybrać rywali albo 
 \label{fig:ss-search-4}
 \end{figure}
 
-Na potrzeby przykładu wybrana została drużyna PWR Elektronika, która jest bardzo dobrze dopasowana do drużyny poszukującej. Następnym krokiem jest rzucenie wyzwania za pomocą widoku przedstawionego na rysunku \ref{fig:ss-search-5}. Kapitan musi dodać co najmniej jedną ofertę czasu oraz miejsca spotkania za pomocą bloku ``+Nowa oferta``. Formularz wprowadzania oferty przedstawiono na rysunku \ref{fig:ss-search-6}.
+Na potrzeby przykładu wybrana została drużyna PWR Elektronika, która jest bardzo dobrze dopasowana do drużyny poszukującej. Następnym krokiem jest rzucenie wyzwania za pomocą widoku przedstawionego na rysunku \ref{fig:ss-search-5}. Kapitan musi dodać co najmniej jedną ofertę czasu oraz miejsca spotkania za pomocą bloku ``+ Nowa oferta``. Formularz wprowadzania oferty przedstawiono na rysunku \ref{fig:ss-search-6}.
 
 \begin{figure}[H]
 \centering
@@ -193,7 +195,7 @@ W wyniku rzucenia wyzwania zostaje ono zarejestrowane w systemie oraz od tej por
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{065-dzialanie/rys/ss-search-8.PNG}
+\includegraphics[width=\linewidth]{065-dzialanie/rys/ss-search-8.png}
 \caption{Widok obecnych wyzwań}
 \label{fig:ss-search-8}
 \end{figure}
@@ -248,7 +250,7 @@ W celu sfinalizowania wyzwania po jego rozegraniu drużyny powinny wprowadzić d
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{065-dzialanie/rys/ss-match-6.PNG}
+\includegraphics[width=\linewidth]{065-dzialanie/rys/ss-match-6.png}
 \caption{Widok formularza wprowadzania wyniku wyzwania}
 \label{fig:ss--match-6}
 \end{figure}
@@ -269,11 +271,11 @@ Wprowadzony wynik musi zostać potwierdzony przez drugiego z kapitanów lub odrz
 \label{fig:ss--match-9}
 \end{figure}
 
-Ostatnim krokiem jaki kapitanowie drużyn mogą podjąć w ramach wyzwania jest ocenienie rywali. Formularz oceny został przedstawiony na rysunku \ref{fig:ss--match-10}. Przesłanie formularza jest opcjonalne, jednak ma duży wpływ na działanie systemu. Drużyny oceniane wysoko pod względem poziomu fair-play są wyróżniane w wynikach wyszukiwania specjalnym znacznikiem. W przypadku deklaracji chęci ponownego spotkania drużyna będzie oznaczona znacznikiem ``Zagraj ponownie``, ale tylko dla drużyny, która wyraziła taką chęć.
+Ostatnim krokiem jaki kapitanowie drużyn mogą podjąć w ramach wyzwania jest ocenienie rywali. Formularz oceny został przedstawiony na rysunku \ref{fig:ss--match-10}. Przesłanie formularza jest opcjonalne, jednak ma duży wpływ na działanie systemu. Drużyny oceniane wysoko pod względem poziomu fair-play są wyróżniane w wynikach wyszukiwania specjalnym znacznikiem. W~przypadku deklaracji chęci ponownego spotkania drużyna będzie oznaczona znacznikiem ``Zagraj ponownie``, ale tylko dla drużyny, która wyraziła taką chęć.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{065-dzialanie/rys/ss-match-10.PNG}
+\includegraphics[width=\linewidth]{065-dzialanie/rys/ss-match-10.png}
 \caption{Widok formularza oceny rywali}
 \label{fig:ss--match-10}
 \end{figure}

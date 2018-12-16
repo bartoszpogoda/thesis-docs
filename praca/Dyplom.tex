@@ -532,7 +532,7 @@ Oznacza to, że wszystkie zawarte  nim treści można kopiować i  wykorzystywa�
 
 \newpage
 \mbox{}\pdfbookmark[0]{Spis rysunków}{spisRysunkow.1}
-%\addcontentsline{toc}{chapter}{Spis rysunków}
+\addcontentsline{toc}{chapter}{Spis rysunków}
 \listoffigures*
 \begin{flushleft}
 
@@ -545,11 +545,15 @@ Oznacza to, że wszystkie zawarte  nim treści można kopiować i  wykorzystywa�
 
 
 
+\newpage
+\mbox{}\pdfbookmark[0]{Spis tabel}{spisTabel.1}
+\addcontentsline{toc}{chapter}{Spis tabel}
+\listoftables*
 
-%\newpage
-%\mbox{}\pdfbookmark[0]{Spis tabel}{spisTabel.1}
-%%\addcontentsline{toc}{chapter}{Spis tabel}
-%\listoftables*
+\renewcommand{\lstlistingname}{Fragment kodu}
+\renewcommand*{\lstlistlistingname}{Spis fragmentów kodu}
+\lstlistoflistings
+\addcontentsline{toc}{chapter}{Spis fragmentów kodu}
 
 %\include{skroty} %skróty można sobie pominąć
 \chapterstyle{default}
@@ -574,11 +578,11 @@ Oznacza to, że wszystkie zawarte  nim treści można kopiować i  wykorzystywa�
 \bibliography{bibliografia}
 \appendix
 
-%\include{dodatekB}
-
-\chapterstyle{noNumbered}
-\phantomsection % sets an anchor
-\addcontentsline{toc}{chapter}{Indeks rzeczowy}
-\printindex
+\include{dodatekB}
+%
+%\chapterstyle{noNumbered}
+%\phantomsection % sets an anchor
+%\addcontentsline{toc}{chapter}{Indeks rzeczowy}
+%\printindex
 
 \end{document}
